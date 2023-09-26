@@ -1,0 +1,624 @@
+
+<h1>Methods</h1>
+<h1>Types</h1>
+<h3 id="archivist.v2.ConfirmationStatus">ConfirmationStatus</h3>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>CONFIRMATION_STATUS_UNSPECIFIED</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>PENDING</p></td>
+            <td><p>1</p></td>
+            <td><p>not yet committed</p></td>
+        </tr>
+        <tr>
+            <td><p>CONFIRMED</p></td>
+            <td><p>2</p></td>
+            <td><p>committed</p></td>
+        </tr>
+        <tr>
+            <td><p>FAILED</p></td>
+            <td><p>3</p></td>
+            <td><p>permanent failure</p></td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="archivist.v2.ProofMechanism">ProofMechanism</h3>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>PROOF_MECHANISM_UNSPECIFIED</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>KHIPU</p></td>
+            <td><p>1</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>SIMPLE_HASH</p></td>
+            <td><p>2</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>TRIE_HASH</p></td>
+            <td><p>3</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>TRIE_HASH_MERKLE</p></td>
+            <td><p>4</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>TRIE_HASH_VERKLE</p></td>
+            <td><p>5</p></td>
+            <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="archivist.v2.StorageIntegrity">StorageIntegrity</h3><p>Specifies how the asset data will be stored. This is set once on creation
+and does not change.</p>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>STORAGE_INTEGRITY_UNSPECIFIED</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>LEDGER</p></td>
+            <td><p>1</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>TENANT_STORAGE</p></td>
+            <td><p>2</p></td>
+            <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="archivist.v2.TrackedStatus">TrackedStatus</h3>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>TRACKED_STATUS_UNSPECIFIED</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>TRACKED</p></td>
+            <td><p>1</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>NOT_TRACKED</p></td>
+            <td><p>2</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>ANY</p></td>
+            <td><p>3</p></td>
+            <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">EventResponse</ac:parameter>
+</ac:structured-macro>
+<h2>EventResponse</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>identity</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>Relative Resource Name for the operation event </p></td>
+        </tr>
+        <tr>
+            <td><p>asset_identity</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled) </p></td>
+        </tr>
+        <tr>
+            <td><p>event_attributes</p></td>
+            <td><p><a href="#EventResponse.EventAttributesEntry">EventResponse.EventAttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>map of event attributes. Specific behaviours define required and optional event attributes for each supported operation. </p></td>
+        </tr>
+        <tr>
+            <td><p>asset_attributes</p></td>
+            <td><p><a href="#EventResponse.AssetAttributesEntry">EventResponse.AssetAttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>map of asset attributes. Specific behaviours define required and optional asset attributes. These attributes cause the corresponding attributes on the asset to be updated. </p></td>
+        </tr>
+        <tr>
+            <td><p>operation</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>name of operation on this behviour </p></td>
+        </tr>
+        <tr>
+            <td><p>behaviour</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>name of this behaviour </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_declared</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p>timestamp when operation was actually performed - if not provided will be set to timestamp_accepted </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_accepted</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p>timestamp when system received operation request </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_committed</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p>timestamp operation has been committed on the blockchain </p></td>
+        </tr>
+        <tr>
+            <td><p>principal_declared</p></td>
+            <td><p><a href="#Principal">Principal</a></p></td>
+            <td><p></p></td>
+            <td><p>principal information associated with event - if not provided will be set to principal_accepted </p></td>
+        </tr>
+        <tr>
+            <td><p>principal_accepted</p></td>
+            <td><p><a href="#Principal">Principal</a></p></td>
+            <td><p></p></td>
+            <td><p>principal logged into the system that performed the operation </p></td>
+        </tr>
+        <tr>
+            <td><p>confirmation_status</p></td>
+            <td><p><a href="#ConfirmationStatus">ConfirmationStatus</a></p></td>
+            <td><p></p></td>
+            <td><p>indicated if operation has been committed to the blockchain </p></td>
+        </tr>
+        <tr>
+            <td><p>transaction_id</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>hash of transaction committing this operation on blockchain </p></td>
+        </tr>
+        <tr>
+            <td><p>block_number</p></td>
+            <td><p><a href="#uint64">uint64</a></p></td>
+            <td><p></p></td>
+            <td><p>block number of committing transaction </p></td>
+        </tr>
+        <tr>
+            <td><p>transaction_index</p></td>
+            <td><p><a href="#uint64">uint64</a></p></td>
+            <td><p></p></td>
+            <td><p>transaction index of committing transaction </p></td>
+        </tr>
+        <tr>
+            <td><p>from</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>wallet address for the creator of this event </p></td>
+        </tr>
+        <tr>
+            <td><p>tenant_identity</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">EventResponse.AssetAttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>EventResponse.AssetAttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">EventResponse.EventAttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>EventResponse.EventAttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">Principal</ac:parameter>
+</ac:structured-macro>
+<h2>Principal</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>issuer</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>subject</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>display_name</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>email</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>issuer</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>subject</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>display_name</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>email</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<h1>Scalar Value Types</h1>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <tbody>
+        <tr>
+            <td><p><strong>.proto Type</strong></p></td>
+            <td><p><strong>Notes</strong></p></td>
+            <td><p><strong>C++</strong></p></td>
+            <td><p><strong>Java</strong></p></td>
+            <td><p><strong>Python</strong></p></td>
+            <td><p><strong>Go</strong></p></td>
+            <td><p><strong>C#</strong></p></td>
+            <td><p><strong>PHP</strong></p></td>
+            <td><p><strong>Ruby</strong></p></td>
+        </tr>
+        
+        <tr>
+        <td><p>double<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">double</ac:parameter></ac:structured-macro></p></td>
+        <td><p></p></td>
+        <td><p>double</p></td>
+        <td><p>double</p></td>
+        <td><p>float</p></td>
+        <td><p>float64</p></td>
+        <td><p>double</p></td>
+        <td><p>float</p></td>
+        <td><p>Float</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>float<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">float</ac:parameter></ac:structured-macro></p></td>
+        <td><p></p></td>
+        <td><p>float</p></td>
+        <td><p>float</p></td>
+        <td><p>float</p></td>
+        <td><p>float32</p></td>
+        <td><p>float</p></td>
+        <td><p>float</p></td>
+        <td><p>Float</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>int32<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">int32</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</p></td>
+        <td><p>int32</p></td>
+        <td><p>int</p></td>
+        <td><p>int</p></td>
+        <td><p>int32</p></td>
+        <td><p>int</p></td>
+        <td><p>integer</p></td>
+        <td><p>Bignum or Fixnum (as required)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>int64<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">int64</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</p></td>
+        <td><p>int64</p></td>
+        <td><p>long</p></td>
+        <td><p>int/long</p></td>
+        <td><p>int64</p></td>
+        <td><p>long</p></td>
+        <td><p>integer/string</p></td>
+        <td><p>Bignum</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>uint32<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">uint32</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Uses variable-length encoding.</p></td>
+        <td><p>uint32</p></td>
+        <td><p>int</p></td>
+        <td><p>int/long</p></td>
+        <td><p>uint32</p></td>
+        <td><p>uint</p></td>
+        <td><p>integer</p></td>
+        <td><p>Bignum or Fixnum (as required)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>uint64<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">uint64</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Uses variable-length encoding.</p></td>
+        <td><p>uint64</p></td>
+        <td><p>long</p></td>
+        <td><p>int/long</p></td>
+        <td><p>uint64</p></td>
+        <td><p>ulong</p></td>
+        <td><p>integer/string</p></td>
+        <td><p>Bignum or Fixnum (as required)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>sint32<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">sint32</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</p></td>
+        <td><p>int32</p></td>
+        <td><p>int</p></td>
+        <td><p>int</p></td>
+        <td><p>int32</p></td>
+        <td><p>int</p></td>
+        <td><p>integer</p></td>
+        <td><p>Bignum or Fixnum (as required)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>sint64<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">sint64</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</p></td>
+        <td><p>int64</p></td>
+        <td><p>long</p></td>
+        <td><p>int/long</p></td>
+        <td><p>int64</p></td>
+        <td><p>long</p></td>
+        <td><p>integer/string</p></td>
+        <td><p>Bignum</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>fixed32<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">fixed32</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</p></td>
+        <td><p>uint32</p></td>
+        <td><p>int</p></td>
+        <td><p>int</p></td>
+        <td><p>uint32</p></td>
+        <td><p>uint</p></td>
+        <td><p>integer</p></td>
+        <td><p>Bignum or Fixnum (as required)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>fixed64<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">fixed64</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</p></td>
+        <td><p>uint64</p></td>
+        <td><p>long</p></td>
+        <td><p>int/long</p></td>
+        <td><p>uint64</p></td>
+        <td><p>ulong</p></td>
+        <td><p>integer/string</p></td>
+        <td><p>Bignum</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>sfixed32<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">sfixed32</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Always four bytes.</p></td>
+        <td><p>int32</p></td>
+        <td><p>int</p></td>
+        <td><p>int</p></td>
+        <td><p>int32</p></td>
+        <td><p>int</p></td>
+        <td><p>integer</p></td>
+        <td><p>Bignum or Fixnum (as required)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>sfixed64<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">sfixed64</ac:parameter></ac:structured-macro></p></td>
+        <td><p>Always eight bytes.</p></td>
+        <td><p>int64</p></td>
+        <td><p>long</p></td>
+        <td><p>int/long</p></td>
+        <td><p>int64</p></td>
+        <td><p>long</p></td>
+        <td><p>integer/string</p></td>
+        <td><p>Bignum</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>bool<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">bool</ac:parameter></ac:structured-macro></p></td>
+        <td><p></p></td>
+        <td><p>bool</p></td>
+        <td><p>boolean</p></td>
+        <td><p>boolean</p></td>
+        <td><p>bool</p></td>
+        <td><p>bool</p></td>
+        <td><p>boolean</p></td>
+        <td><p>TrueClass/FalseClass</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>string<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">string</ac:parameter></ac:structured-macro></p></td>
+        <td><p>A string must always contain UTF-8 encoded or 7-bit ASCII text.</p></td>
+        <td><p>string</p></td>
+        <td><p>String</p></td>
+        <td><p>str/unicode</p></td>
+        <td><p>string</p></td>
+        <td><p>string</p></td>
+        <td><p>string</p></td>
+        <td><p>String (UTF-8)</p></td>
+        </tr>
+        
+        <tr>
+        <td><p>bytes<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:local-id="510e24cf-902a-48c4-a9ca-15d9c11ee007" ac:macro-id="358ca23f11a312a9c85b2d4258e342e2"><ac:parameter ac:name="">bytes</ac:parameter></ac:structured-macro></p></td>
+        <td><p>May contain any arbitrary sequence of bytes.</p></td>
+        <td><p>string</p></td>
+        <td><p>ByteString</p></td>
+        <td><p>str</p></td>
+        <td><p>[]byte</p></td>
+        <td><p>ByteString</p></td>
+        <td><p>string</p></td>
+        <td><p>String (ASCII-8BIT)</p></td>
+        </tr>
+        
+    </tbody>
+</table>
