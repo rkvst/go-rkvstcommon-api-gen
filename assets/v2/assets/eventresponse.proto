@@ -1,3 +1,5 @@
+// Maintainers, please refer to the style guide here:
+//     https://developers.google.com/protocol-buffers/docs/style
 syntax = "proto3";
 package archivist.v2;
 option go_package="github.com/rkvst/go-rkvstcommon-api-gen/assets/v2/assets;assets";

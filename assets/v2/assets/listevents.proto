@@ -1,27 +1,18 @@
-/*
- * We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
- * The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
- * Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?
- */
-syntax = "proto3";
-// Contains the generated protocol definitions for the registration protocol.
-// Registrar clients, service proxies and the archivist service will all use
-// these.
 // Maintainers, please refer to the style guide here:
 //     https://developers.google.com/protocol-buffers/docs/style
+syntax = "proto3";
 package archivist.v2;
 option go_package="github.com/rkvst/go-rkvstcommon-api-gen/assets/v2/assets;assets";
 
-import "google/api/annotations.proto";
 import "validate/validate.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/protobuf/timestamp.proto";
 
 import "assets/v2/assets/enums.proto";
 import "assets/v2/assets/principal.proto";
-import "attribute/v2/attribute/attribute.proto";
 import "filter/v1/filter/filter.proto";
 import "assets/v2/assets/eventresponse.proto";
+
 message ListEventsRequest {
 
     // Maximum results per page.

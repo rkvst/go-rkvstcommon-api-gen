@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "assets/v2/assets/createasset.proto",
+    "title": "assets/v2/assets/miscmessages.proto",
     "version": "version not set"
   },
   "consumes": [

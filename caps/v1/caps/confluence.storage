@@ -1,11 +1,10 @@
-<p>Maintainers, please refer to the style guide here:
-    https://developers.google.com/protocol-buffers/docs/style</p>
+
 <h1>Methods</h1>
 <h1>Types</h1>
 <ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
-    <ac:parameter ac:name="">Attribute</ac:parameter>
+    <ac:parameter ac:name="">Cap</ac:parameter>
 </ac:structured-macro>
-<h2>Attribute</h2>
+<h2>Cap</h2>
 <table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
     <colgroup>
         <col style="width: 330.0px;" />
@@ -21,20 +20,14 @@
             <th><p><strong>Description</strong></p></th>
         </tr>
         <tr>
-            <td><p>str_val</p></td>
+            <td><p>resource_type</p></td>
             <td><p><a href="#string">string</a></p></td>
             <td><p></p></td>
             <td><p> </p></td>
         </tr>
         <tr>
-            <td><p>dict_val</p></td>
-            <td><p><a href="#DictAttr">DictAttr</a></p></td>
-            <td><p></p></td>
-            <td><p> </p></td>
-        </tr>
-        <tr>
-            <td><p>list_val</p></td>
-            <td><p><a href="#ListAttr">ListAttr</a></p></td>
+            <td><p>resource_remaining</p></td>
+            <td><p><a href="#int64">int64</a></p></td>
             <td><p></p></td>
             <td><p> </p></td>
         </tr>
@@ -52,19 +45,28 @@
             <th><p><strong>Validations</strong></p></th>
         </tr>
         <tr>
-            <td><p>str_val</p></td>
+            <td><p>resource_type</p></td>
             <td>
                 <ul>
-                    <li>string.max_len: 4096</li>
+                    <li>string.min_len: 1</li>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>resource_remaining</p></td>
+            <td>
+                <ul>
+                    <li>int64.gte: -1</li>
                 </ul>
             </td>
         </tr>
     </tbody>
 </table>
 <ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
-    <ac:parameter ac:name="">DictAttr</ac:parameter>
+    <ac:parameter ac:name="">Caps</ac:parameter>
 </ac:structured-macro>
-<h2>DictAttr</h2>
+<h2>Caps</h2>
 <table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
     <colgroup>
         <col style="width: 330.0px;" />
@@ -80,94 +82,17 @@
             <th><p><strong>Description</strong></p></th>
         </tr>
         <tr>
-            <td><p>value</p></td>
-            <td><p><a href="#DictAttr.ValueEntry">DictAttr.ValueEntry</a></p></td>
+            <td><p>caps</p></td>
+            <td><p><a href="#Cap">Cap</a></p></td>
             <td><p>repeated</p></td>
             <td><p> </p></td>
         </tr>
     </tbody>
 </table>
-<h4>Validated Fields</h4>
-<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
-    <colgroup>
-        <col style="width: 330.0px;" />
-        <col style="width: 1300.0px;" />
-        </colgroup>
-    <tbody>
-        <tr>
-            <th><p><strong>Field</strong></p></th>
-            <th><p><strong>Validations</strong></p></th>
-        </tr>
-        <tr>
-            <td><p>value</p></td>
-            <td>
-                <ul>
-                    <li>map.keys.string.max_len: 1024</li>
-                    <li>map.keys.string.not_contains: .</li>
-                    <li>map.values.string.max_len: 4096</li>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
-</table>
 <ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
-    <ac:parameter ac:name="">DictAttr.ValueEntry</ac:parameter>
+    <ac:parameter ac:name="">GetCapsRequest</ac:parameter>
 </ac:structured-macro>
-<h2>DictAttr.ValueEntry</h2>
-<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
-    <colgroup>
-        <col style="width: 330.0px;" />
-        <col style="width: 360.0px;" />
-        <col style="width: 200.0px;" />
-        <col style="width: 710.0px;" />
-    </colgroup>
-    <tbody>
-        <tr>
-            <th><p><strong>Name</strong></p></th>
-            <th><p><strong>Type</strong></p></th>
-            <th><p><strong>Labels</strong></p></th>
-            <th><p><strong>Description</strong></p></th>
-        </tr>
-        <tr>
-            <td><p>key</p></td>
-            <td><p><a href="#string">string</a></p></td>
-            <td><p></p></td>
-            <td><p> </p></td>
-        </tr>
-        <tr>
-            <td><p>value</p></td>
-            <td><p><a href="#string">string</a></p></td>
-            <td><p></p></td>
-            <td><p> </p></td>
-        </tr>
-    </tbody>
-</table>
-<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
-    <ac:parameter ac:name="">ListAttr</ac:parameter>
-</ac:structured-macro>
-<h2>ListAttr</h2>
-<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
-    <colgroup>
-        <col style="width: 330.0px;" />
-        <col style="width: 360.0px;" />
-        <col style="width: 200.0px;" />
-        <col style="width: 710.0px;" />
-    </colgroup>
-    <tbody>
-        <tr>
-            <th><p><strong>Name</strong></p></th>
-            <th><p><strong>Type</strong></p></th>
-            <th><p><strong>Labels</strong></p></th>
-            <th><p><strong>Description</strong></p></th>
-        </tr>
-        <tr>
-            <td><p>value</p></td>
-            <td><p><a href="#DictAttr">DictAttr</a></p></td>
-            <td><p>repeated</p></td>
-            <td><p> </p></td>
-        </tr>
-    </tbody>
-</table>
+<h2>GetCapsRequest</h2>
 <p />
 <h1>Scalar Value Types</h1>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">

@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Contains the generated protocol definitions for the registration protocol.\nRegistrar clients, service proxies and the archivist service will all use\nthese.\nMaintainers, please refer to the style guide here:\n    https://developers.google.com/protocol-buffers/docs/style",
+    "title": "assets/v2/assets/listevents.proto",
     "version": "version not set"
   },
   "consumes": [

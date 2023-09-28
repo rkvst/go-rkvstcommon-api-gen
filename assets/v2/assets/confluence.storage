@@ -1,15 +1,273 @@
-<p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
-The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
-Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
-The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
-Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
-The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
-Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
-The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
-Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
-The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
-Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p>
+<p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p><p>Maintainers, please refer to the style guide here:
+    https://developers.google.com/protocol-buffers/docs/style</p>
 <h1>Methods</h1>
+<h2>PublicAssets</h2>
+<table data-layout="default" ac:local-id="81556721-3dd3-4e9d-a039-cf985a59316f">
+    <colgroup>
+        <col style="width: 160.0px;" />
+        <col style="width: 160.0px;" />
+        <col style="width: 250.0px;" />
+        <col style="width: 190.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>GRPC Method Name</strong></p></th>
+            <th><p><strong>Request Type</strong></p></th>
+            <th><p><strong>Response Type</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>GetPublicAsset</p></td>
+            <td><p><a href="#GetAssetRequest">GetAssetRequest</a></p></td>
+            <td><p><a href="#AssetResponse">AssetResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>GetPublicEvent</p></td>
+            <td><p><a href="#GetEventRequest">GetEventRequest</a></p></td>
+            <td><p><a href="#EventResponse">EventResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>ListPublicEvents</p></td>
+            <td><p><a href="#ListEventsRequest">ListEventsRequest</a></p></td>
+            <td><p><a href="#ListEventsResponse">ListEventsResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+    </tbody>
+</table>
+<table data-layout="default" ac:local-id="4015ea77-d1d8-4d9d-8bc9-9e1b15233143">
+    <colgroup>
+        <col style="width: 160.0px;" />
+        <col style="width: 60.0px;" />
+        <col style="width: 100.0px;" />
+        <col style="width: 440.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>HTTP Endpoints</strong></p></th>
+            <th><p><strong>Verb</strong></p></th>
+            <th><p><strong>GRPC call</strong></p></th>
+            <th><p><strong>Body</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/publicassets/{uuid}</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetPublicAsset</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/publicassets/{asset_uuid}/events/{uuid}</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetPublicEvent</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/publicassets/{uuid}/events</p></td>
+            <td><p>GET</p></td>
+            <td><p>ListPublicEvents</p></td>
+            <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<h2>Assets</h2>
+<table data-layout="default" ac:local-id="81556721-3dd3-4e9d-a039-cf985a59316f">
+    <colgroup>
+        <col style="width: 160.0px;" />
+        <col style="width: 160.0px;" />
+        <col style="width: 250.0px;" />
+        <col style="width: 190.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>GRPC Method Name</strong></p></th>
+            <th><p><strong>Request Type</strong></p></th>
+            <th><p><strong>Response Type</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>ListAssets</p></td>
+            <td><p><a href="#ListAssetsRequest">ListAssetsRequest</a></p></td>
+            <td><p><a href="#ListAssetsResponse">ListAssetsResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>CreateAsset</p></td>
+            <td><p><a href="#CreateAssetRequest">CreateAssetRequest</a></p></td>
+            <td><p><a href="#AssetResponse">AssetResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>GetAsset</p></td>
+            <td><p><a href="#GetAssetRequest">GetAssetRequest</a></p></td>
+            <td><p><a href="#AssetResponse">AssetResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>GetAssetPublicURL</p></td>
+            <td><p><a href="#GetAssetPublicURLRequest">GetAssetPublicURLRequest</a></p></td>
+            <td><p><a href="#PublicAssetURLResponse">PublicAssetURLResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>GetEvent</p></td>
+            <td><p><a href="#GetEventRequest">GetEventRequest</a></p></td>
+            <td><p><a href="#EventResponse">EventResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>GetEventPublicURL</p></td>
+            <td><p><a href="#GetEventRequest">GetEventRequest</a></p></td>
+            <td><p><a href="#PublicEventURLResponse">PublicEventURLResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>ListEvents</p></td>
+            <td><p><a href="#ListEventsRequest">ListEventsRequest</a></p></td>
+            <td><p><a href="#ListEventsResponse">ListEventsResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>GetCaps</p></td>
+            <td><p><a href="#.archivist.v1.GetCapsRequest">.archivist.v1.GetCapsRequest</a></p></td>
+            <td><p><a href="#.archivist.v1.Caps">.archivist.v1.Caps</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+    </tbody>
+</table>
+<table data-layout="default" ac:local-id="4015ea77-d1d8-4d9d-8bc9-9e1b15233143">
+    <colgroup>
+        <col style="width: 160.0px;" />
+        <col style="width: 60.0px;" />
+        <col style="width: 100.0px;" />
+        <col style="width: 440.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>HTTP Endpoints</strong></p></th>
+            <th><p><strong>Verb</strong></p></th>
+            <th><p><strong>GRPC call</strong></p></th>
+            <th><p><strong>Body</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets</p></td>
+            <td><p>GET</p></td>
+            <td><p>ListAssets</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets</p></td>
+            <td><p>POST</p></td>
+            <td><p>CreateAsset</p></td>
+            <td><p>*</p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets/{uuid}</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetAsset</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets/{uuid}:publicurl</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetAssetPublicURL</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets/{asset_uuid}/events/{uuid}</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetEvent</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets/{asset_uuid}/events/{uuid}:publicurl</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetEventPublicURL</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets/{uuid}/events</p></td>
+            <td><p>GET</p></td>
+            <td><p>ListEvents</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets:caps</p></td>
+            <td><p>GET</p></td>
+            <td><p>GetCaps</p></td>
+            <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<h2>Events</h2>
+<table data-layout="default" ac:local-id="81556721-3dd3-4e9d-a039-cf985a59316f">
+    <colgroup>
+        <col style="width: 160.0px;" />
+        <col style="width: 160.0px;" />
+        <col style="width: 250.0px;" />
+        <col style="width: 190.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>GRPC Method Name</strong></p></th>
+            <th><p><strong>Request Type</strong></p></th>
+            <th><p><strong>Response Type</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>Create</p></td>
+            <td><p><a href="#CreateEventRequest">CreateEventRequest</a></p></td>
+            <td><p><a href="#EventResponse">EventResponse</a></p></td>
+            <td><p></p></td>
+        </tr>
+        
+    </tbody>
+</table>
+<table data-layout="default" ac:local-id="4015ea77-d1d8-4d9d-8bc9-9e1b15233143">
+    <colgroup>
+        <col style="width: 160.0px;" />
+        <col style="width: 60.0px;" />
+        <col style="width: 100.0px;" />
+        <col style="width: 440.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>HTTP Endpoints</strong></p></th>
+            <th><p><strong>Verb</strong></p></th>
+            <th><p><strong>GRPC call</strong></p></th>
+            <th><p><strong>Body</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>/archivist/v2/assets/{uuid}/events</p></td>
+            <td><p>POST</p></td>
+            <td><p>Create</p></td>
+            <td><p>*</p></td>
+        </tr>
+    </tbody>
+</table>
 <h1>Types</h1>
 <ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
     <ac:parameter ac:name="">AssetResponse</ac:parameter>
@@ -320,6 +578,192 @@ Note that there is no PATCH or PUT for assets as they are immutable and "changes
     </tbody>
 </table>
 <p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">CreateEventRequest</ac:parameter>
+</ac:structured-macro>
+<h2>CreateEventRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>relative resource name for associated asset ( asset the operation is performed on  - has to have specific behaviour enabled) </p></td>
+        </tr>
+        <tr>
+            <td><p>behaviour</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>name of this behaviour </p></td>
+        </tr>
+        <tr>
+            <td><p>operation</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>name of operation on this behviour </p></td>
+        </tr>
+        <tr>
+            <td><p>principal_declared</p></td>
+            <td><p><a href="#Principal">Principal</a></p></td>
+            <td><p></p></td>
+            <td><p>principal information associated with event - if not provided will be set to principal_accepted </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_declared</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p>timestamp when operation was actually performed - if not provided will be set to timestamp_accepted </p></td>
+        </tr>
+        <tr>
+            <td><p>event_attributes</p></td>
+            <td><p><a href="#CreateEventRequest.EventAttributesEntry">CreateEventRequest.EventAttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>map of event attributes. Specific behaviours define required and optional event attributes for each supported operation. </p></td>
+        </tr>
+        <tr>
+            <td><p>asset_attributes</p></td>
+            <td><p><a href="#CreateEventRequest.AssetAttributesEntry">CreateEventRequest.AssetAttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>map of asset attributes. Specific behaviours define required and optional asset attributes. These attributes cause the corresponding attributes on the asset to be updated. </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td>
+                <ul>
+                    <li>string.uuid: true</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>behaviour</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>operation</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>event_attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]*?[^[[:cntrl:]]+?[^[:cntrl:]]$|^[^[:cntrl:]]$|^[^[:cntrl:]]*?[^][:cntrl:]]$</li>
+                    <li>map.keys.string.not_contains: .</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>asset_attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]*?[^[[:cntrl:]]+?[^[:cntrl:]]$|^[^[:cntrl:]]$|^[^[:cntrl:]]*?[^][:cntrl:]]$</li>
+                    <li>map.keys.string.not_contains: .</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">CreateEventRequest.AssetAttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>CreateEventRequest.AssetAttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">CreateEventRequest.EventAttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>CreateEventRequest.EventAttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
 <h3 id="archivist.v2.ConfirmationStatus">ConfirmationStatus</h3>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
     <colgroup>
@@ -493,6 +937,75 @@ and does not change.</p>
             <td><p>ANY</p></td>
             <td><p>3</p></td>
             <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">EventMessage</ac:parameter>
+</ac:structured-macro>
+<h2>EventMessage</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>event</p></td>
+            <td><p><a href="#EventResponse">EventResponse</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>asset</p></td>
+            <td><p><a href="#AssetResponse">AssetResponse</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>tenant_id</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>failed_reason</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>asset_create2_factory</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>asset_create2_factory of the asset contract that exported the asset rlp
+(from which the AssetResponse is made). identifies the asset contract
+which enacted the change. The factory changes when the subjective value
+chain membership changes, and if the factory itself needs upgrading
+(which is very rare). So this value is a very clear (and easily
+accessible) chain level record of who the SVC value chain colaborators
+were when the change was made. All changes to an asset which share the
+same factory can only have been enacted by a combination of the
+privateFor's for whome the factory was deployed. </p></td>
+        </tr>
+        <tr>
+            <td><p>event_create2_factory</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>event_create2_factory of the behaviour contract that exported the event
+rlp (from which the EventResponse is made). identifies the behaviour
+contract which enacted the change. The factory changes when the
+subjective value chain membership changes, and if the factory itself
+needs upgrading (which is very rare) </p></td>
         </tr>
     </tbody>
 </table>
@@ -773,6 +1286,68 @@ and does not change.</p>
         <tr>
             <th><p><strong>Field</strong></p></th>
             <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td>
+                <ul>
+                    <li>string.uuid: true</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">GetEventRequest</ac:parameter>
+</ac:structured-macro>
+<h2>GetEventRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>asset_uuid</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>asset_uuid</p></td>
+            <td>
+                <ul>
+                    <li>string.uuid: true</li>
+                </ul>
+            </td>
         </tr>
         <tr>
             <td><p>uuid</p></td>
@@ -1425,6 +2000,139 @@ On the Access Policy editor page in the UX wire frames, we see locations and a a
 </table>
 <p />
 <ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">EventCommitMessage</ac:parameter>
+</ac:structured-macro>
+<h2>EventCommitMessage</h2><p>EventCommitMessage is used between the khipu assemble and event commit stages</p>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>message</p></td>
+            <td><p><a href="#EventMessage">EventMessage</a></p></td>
+            <td><p></p></td>
+            <td><p>repeated bytes khipu_transaction_hashes = 2; </p></td>
+        </tr>
+        <tr>
+            <td><p>khipu_packed_input_ver</p></td>
+            <td><p><a href="#int32">int32</a></p></td>
+            <td><p></p></td>
+            <td><p>It is very cumbersome to represent the PackedInput as proto. Instead we
+have used go gob for simplicity, but we do want internal schema
+versioning hence khipu_packed_input_ver
+
+recievers ignore versions != what they are built against </p></td>
+        </tr>
+        <tr>
+            <td><p>khipu_packed_assembly_inputs</p></td>
+            <td><p><a href="#bytes">bytes</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>khipu_packed_commit_input</p></td>
+            <td><p><a href="#bytes">bytes</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">EventReceiptMessage</ac:parameter>
+</ac:structured-macro>
+<h2>EventReceiptMessage</h2><p>EventReceiptMessage is used between the event commit and commit receipt stages</p>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>message</p></td>
+            <td><p><a href="#EventMessage">EventMessage</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>commit_transaction_hash</p></td>
+            <td><p><a href="#bytes">bytes</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">PublicAssetURLResponse</ac:parameter>
+</ac:structured-macro>
+<h2>PublicAssetURLResponse</h2><p>PublicAssetURLResponse is the public url response when calling the :publicurl verb</p>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>publicurl</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">PublicEventURLResponse</ac:parameter>
+</ac:structured-macro>
+<h2>PublicEventURLResponse</h2><p>PublicEventURLResponse is the public url response when calling the :publicurl verb</p>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>publicurl</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
     <ac:parameter ac:name="">Principal</ac:parameter>
 </ac:structured-macro>
 <h2>Principal</h2>
@@ -1513,6 +2221,8 @@ On the Access Policy editor page in the UX wire frames, we see locations and a a
         </tr>
     </tbody>
 </table>
+<p />
+<p />
 <p />
 <h1>Scalar Value Types</h1>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
