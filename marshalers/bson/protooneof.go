@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/bsoncodec"
 	"go.mongodb.org/mongo-driver/bson/bsonrw"
 
-	v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/api/attribute/v2/attribute"
+	v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/attribute/v2/attribute"
 	"github.com/rkvst/go-rkvstcommon/logger"
 )
 

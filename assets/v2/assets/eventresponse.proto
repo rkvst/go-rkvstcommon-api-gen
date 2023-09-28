@@ -1,6 +1,6 @@
 syntax = "proto3";
 package archivist.v2;
-option go_package="github.com/rkvst/go-rkvstcommon-api-gen/api/assets/v2/assets;assets";
+option go_package="github.com/rkvst/go-rkvstcommon-api-gen/assets/v2/assets;assets";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "assets/v2/assets/enums.proto";

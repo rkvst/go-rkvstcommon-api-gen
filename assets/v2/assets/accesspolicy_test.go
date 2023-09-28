@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/api/attribute/v2/attribute"
+	v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/attribute/v2/attribute"
 )
 
 // TestAssetResponse_IsAssetSharedForWallet

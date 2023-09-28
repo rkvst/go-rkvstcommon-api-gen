@@ -5,12 +5,12 @@ import (
 	"testing"
 
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
-	"github.com/rkvst/go-rkvstcommon-api-gen/api/assets/v2/assets"
+	"github.com/rkvst/go-rkvstcommon-api-gen/assets/v2/assets"
 	"github.com/rkvst/go-rkvstcommon/logger"
 	"github.com/stretchr/testify/assert"
 	"google.golang.org/protobuf/reflect/protoreflect"
-	// v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/api/attribute/v2/attribute"
-	// v2filter "github.com/rkvst/go-rkvstcommon-api-gen/api/filter/v2/filter"
+	// v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/attribute/v2/attribute"
+	// v2filter "github.com/rkvst/go-rkvstcommon-api-gen/filter/v2/filter"
 )
 
 func TestFilterParsing(t *testing.T) {
