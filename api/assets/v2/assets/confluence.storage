@@ -1,7 +1,7 @@
 
 <h1>Methods</h1>
 <h1>Types</h1>
-<h3 id="archivist.v2.ConfirmationStatus">ConfirmationStatus</h3>
+<h3 id="archivist.rkvstcommon.v2.ConfirmationStatus">ConfirmationStatus</h3>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
     <colgroup>
         <col style="width: 300.0px;" />
@@ -36,7 +36,7 @@
         </tr>
     </tbody>
 </table>
-<h3 id="archivist.v2.ProofMechanism">ProofMechanism</h3>
+<h3 id="archivist.rkvstcommon.v2.ProofMechanism">ProofMechanism</h3>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
     <colgroup>
         <col style="width: 300.0px;" />
@@ -81,7 +81,7 @@
         </tr>
     </tbody>
 </table>
-<h3 id="archivist.v2.StorageIntegrity">StorageIntegrity</h3><p>Specifies how the asset data will be stored. This is set once on creation
+<h3 id="archivist.rkvstcommon.v2.StorageIntegrity">StorageIntegrity</h3><p>Specifies how the asset data will be stored. This is set once on creation
 and does not change.</p>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
     <colgroup>
@@ -112,7 +112,7 @@ and does not change.</p>
         </tr>
     </tbody>
 </table>
-<h3 id="archivist.v2.TrackedStatus">TrackedStatus</h3>
+<h3 id="archivist.rkvstcommon.v2.TrackedStatus">TrackedStatus</h3>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
     <colgroup>
         <col style="width: 300.0px;" />

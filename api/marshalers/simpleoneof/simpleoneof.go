@@ -14,7 +14,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
-	v2attribute "github.com/rkvst/go-rkvstavid-api-gen/api/attribute/v2/attribute"
+	v2attribute "github.com/rkvst/go-rkvstcommon-api-gen/api/attribute/v2/attribute"
 	"github.com/rkvst/go-rkvstcommon/logger"
 )
 
