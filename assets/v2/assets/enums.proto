@@ -32,3 +32,9 @@ enum ProofMechanism {
     TRIE_HASH_MERKLE = 4;
     TRIE_HASH_VERKLE = 5;
 }
+
+enum Privacy {
+    PRIVACY_UNSPECIFIED = 0;
+    RESTRICTED = 1;
+    PUBLIC = 2;
+}

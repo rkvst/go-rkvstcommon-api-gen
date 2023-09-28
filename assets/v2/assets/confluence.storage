@@ -1,6 +1,325 @@
-
+<p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
+The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
+Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
+The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
+Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
+The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
+Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
+The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
+Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p><p>We have settled on 'asset' as being the fundamental type we will record events for. The device enrolment api, enrols a device which is considered a kind of asset. There are other kinds, not all of which are physical, or 'atomic'.
+The 'Thing' in Internet of Things does not conform nicely to a single simple type of device...consider a micro controller, where device ID, firmware, and device are all a coherent tightly-coupled whole, vs a car which includes multiple chips, IDs, ECU firmwares and so on.  We need to settle on 'asset' as the thing that a company consciously buys and uses day-to-day, and then deal with inner complexity or differences later.
+Further, not all 'assets' are a 'device' in the traditional sense - what about a software module for a PLC?  What about a valve?</p>
 <h1>Methods</h1>
 <h1>Types</h1>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">AssetResponse</ac:parameter>
+</ac:structured-macro>
+<h2>AssetResponse</h2><p>The full set of properties common to all assets. Note that some of these properies are synthesized by the system. Individual apis will clarify which properties the accept and require. Assets may have one or more representative images. Those will be included in the attachments list. The label for those attachements is up to the UI
+Note that there is no PATCH or PUT for assets as they are immutable and "changes" are merely aggregated events on the identified asset, therefore mutable fields; display_name, extended_attributes, type_attributes, tracked and attachments, will each require an Event to change (see Events below).</p>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>identity</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>asset identity </p></td>
+        </tr>
+        <tr>
+            <td><p>behaviours</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>list of enabled behaviours </p></td>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td><p><a href="#AssetResponse.AttributesEntry">AssetResponse.AttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>all the assets attributes </p></td>
+        </tr>
+        <tr>
+            <td><p>confirmation_status</p></td>
+            <td><p><a href="#ConfirmationStatus">ConfirmationStatus</a></p></td>
+            <td><p></p></td>
+            <td><p>indicated if asset has been committed to the blockchain, possible values are CONFIRMED for committed, PENDING for not yet committed or FAILED for permanent failure </p></td>
+        </tr>
+        <tr>
+            <td><p>tracked</p></td>
+            <td><p><a href="#TrackedStatus">TrackedStatus</a></p></td>
+            <td><p></p></td>
+            <td><p>indicates if asset is being tracked in the system TRACKED or NOT_TRACKED </p></td>
+        </tr>
+        <tr>
+            <td><p>access_policy</p></td>
+            <td><p><a href="#AssetResponse.AccessPolicyEntry">AssetResponse.AccessPolicyEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>describes the access policy for this asset </p></td>
+        </tr>
+        <tr>
+            <td><p>owner</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>wallet address for the owner of this asset </p></td>
+        </tr>
+        <tr>
+            <td><p>at_time</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>storage_integrity</p></td>
+            <td><p><a href="#StorageIntegrity">StorageIntegrity</a></p></td>
+            <td><p></p></td>
+            <td><p>XXX: #4483 DEPRECATED use proof_mechanism </p></td>
+        </tr>
+        <tr>
+            <td><p>proof_mechanism</p></td>
+            <td><p><a href="#ProofMechanism">ProofMechanism</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>chain_id</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>public</p></td>
+            <td><p><a href="#bool">bool</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>tenant_identity</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">AssetResponse.AccessPolicyEntry</ac:parameter>
+</ac:structured-macro>
+<h2>AssetResponse.AccessPolicyEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">AssetResponse.AttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>AssetResponse.AttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">CreateAssetRequest</ac:parameter>
+</ac:structured-macro>
+<h2>CreateAssetRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>behaviours</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>list of enabled behaviours </p></td>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td><p><a href="#CreateAssetRequest.AttributesEntry">CreateAssetRequest.AttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>event attributes for the assets creation </p></td>
+        </tr>
+        <tr>
+            <td><p>storage_integrity</p></td>
+            <td><p><a href="#StorageIntegrity">StorageIntegrity</a></p></td>
+            <td><p></p></td>
+            <td><p>XXX: #4483 DEPRECATED use proof_mechanism </p></td>
+        </tr>
+        <tr>
+            <td><p>proof_mechanism</p></td>
+            <td><p><a href="#ProofMechanism">ProofMechanism</a></p></td>
+            <td><p></p></td>
+            <td><p>mechanism for evidential proof for Events on this Asset </p></td>
+        </tr>
+        <tr>
+            <td><p>chain_id</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>public</p></td>
+            <td><p><a href="#bool">bool</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>behaviours</p></td>
+            <td>
+                <ul>
+                    <li>repeated.items.string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]*?[^[[:cntrl:]]+?[^[:cntrl:]]$|^[^[:cntrl:]]$|^[^[:cntrl:]]*?[^][:cntrl:]]$</li>
+                    <li>map.keys.string.not_contains: .</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>storage_integrity</p></td>
+            <td>
+                <ul>
+                    <li>enum.defined_only: true</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>proof_mechanism</p></td>
+            <td>
+                <ul>
+                    <li>enum.defined_only: true</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>chain_id</p></td>
+            <td>
+                <ul>
+                    <li>string.max_len: 1024</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">CreateAssetRequest.AttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>CreateAssetRequest.AttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#Attribute">Attribute</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
 <h3 id="archivist.v2.ConfirmationStatus">ConfirmationStatus</h3>
 <table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
     <colgroup>
@@ -33,6 +352,36 @@
             <td><p>FAILED</p></td>
             <td><p>3</p></td>
             <td><p>permanent failure</p></td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="archivist.v2.Privacy">Privacy</h3>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>PRIVACY_UNSPECIFIED</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>RESTRICTED</p></td>
+            <td><p>1</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>PUBLIC</p></td>
+            <td><p>2</p></td>
+            <td><p></p></td>
         </tr>
     </tbody>
 </table>
@@ -331,6 +680,746 @@ and does not change.</p>
             <td><p><a href="#Attribute">Attribute</a></p></td>
             <td><p></p></td>
             <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">GetAssetPublicURLRequest</ac:parameter>
+</ac:structured-macro>
+<h2>GetAssetPublicURLRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>asset identity </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td>
+                <ul>
+                    <li>string.uuid: true</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">GetAssetRequest</ac:parameter>
+</ac:structured-macro>
+<h2>GetAssetRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>asset identity </p></td>
+        </tr>
+        <tr>
+            <td><p>at_time</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td>
+                <ul>
+                    <li>string.uuid: true</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListAssetsRequest</ac:parameter>
+</ac:structured-macro>
+<h2>ListAssetsRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>page_size</p></td>
+            <td><p><a href="#int32">int32</a></p></td>
+            <td><p></p></td>
+            <td><p>Maximum results per page. </p></td>
+        </tr>
+        <tr>
+            <td><p>page_token</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>The next_page_token returned from a previous list request if any. </p></td>
+        </tr>
+        <tr>
+            <td><p>order_by</p></td>
+            <td><p><a href="#ListAssetsRequest.OrderBy">ListAssetsRequest.OrderBy</a></p></td>
+            <td><p></p></td>
+            <td><p>Specify the sort order for the results. </p></td>
+        </tr>
+        <tr>
+            <td><p>tracked</p></td>
+            <td><p><a href="#TrackedStatus">TrackedStatus</a></p></td>
+            <td><p></p></td>
+            <td><p>indicates whether asset is still being tracked in the system </p></td>
+        </tr>
+        <tr>
+            <td><p>confirmation_status</p></td>
+            <td><p><a href="#ConfirmationStatus">ConfirmationStatus</a></p></td>
+            <td><p></p></td>
+            <td><p>indicates if the asset has been succesfully committed to the blockchain </p></td>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td><p><a href="#ListAssetsRequest.AttributesEntry">ListAssetsRequest.AttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>user defined attributes key max_length: 1024 value max_length: 4096 </p></td>
+        </tr>
+        <tr>
+            <td><p>storage_integrity</p></td>
+            <td><p><a href="#StorageIntegrity">StorageIntegrity</a></p></td>
+            <td><p></p></td>
+            <td><p>XXX: #4483 DEPRECATED use proof_mechanism </p></td>
+        </tr>
+        <tr>
+            <td><p>proof_mechanism</p></td>
+            <td><p><a href="#ProofMechanism">ProofMechanism</a></p></td>
+            <td><p></p></td>
+            <td><p>proof mechanism of the asset (and all its events) </p></td>
+        </tr>
+        <tr>
+            <td><p>chain_id</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>filters</p></td>
+            <td><p><a href="#archivist.v1.Filter">archivist.v1.Filter</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>Outer list AND, inner list INCLUSIVE OR, e.g. [[A, B], [A, B]] "(A OR B) in first position AND (A OR B) in second position (and anything after)"
+The behaviour of these filters matches the filters available for
+selecting assets in access policies:
+On the Access Policy editor page in the UX wire frames, we see locations and a asset_types as two of the items to filter on. A policy that expresses “a policy for all door access readers in Basingstoke or Cambridge”
+[
+    { "or": ["location=basingstoke", "location=cambridge"] },
+    { "or": ["asset_type=door_access_reader"] }
+] </p></td>
+        </tr>
+        <tr>
+            <td><p>privacy</p></td>
+            <td><p><a href="#Privacy">Privacy</a></p></td>
+            <td><p></p></td>
+            <td><p>privacy filter of the asset (and all its events) </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>page_size</p></td>
+            <td>
+                <ul>
+                    <li>int32.gte: 0</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]+$</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>privacy</p></td>
+            <td>
+                <ul>
+                    <li>enum.defined_only: true</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListAssetsRequest.AttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>ListAssetsRequest.AttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListAssetsResponse</ac:parameter>
+</ac:structured-macro>
+<h2>ListAssetsResponse</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>assets</p></td>
+            <td><p><a href="#AssetResponse">AssetResponse</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>next_page_token</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>Token to retrieve the next page of results or empty if there are none. </p></td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="archivist.v2.ListAssetsRequest.OrderBy">ListAssetsRequest.OrderBy</h3><p>Supported sort orders</p>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>DEFAULT</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>SIMPLEHASHV1</p></td>
+            <td><p>1</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>SIMPLEHASHV2</p></td>
+            <td><p>2</p></td>
+            <td><p></p></td>
+        </tr>
+    </tbody>
+</table>
+<p />
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListEventsRequest</ac:parameter>
+</ac:structured-macro>
+<h2>ListEventsRequest</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>page_size</p></td>
+            <td><p><a href="#int32">int32</a></p></td>
+            <td><p></p></td>
+            <td><p>Maximum results per page. </p></td>
+        </tr>
+        <tr>
+            <td><p>page_token</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>The next_page_token returned from a previous list request if any. </p></td>
+        </tr>
+        <tr>
+            <td><p>order_by</p></td>
+            <td><p><a href="#ListEventsRequest.OrderBy">ListEventsRequest.OrderBy</a></p></td>
+            <td><p></p></td>
+            <td><p>Specify the sort order for the results. </p></td>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>confirmation_status</p></td>
+            <td><p><a href="#ConfirmationStatus">ConfirmationStatus</a></p></td>
+            <td><p></p></td>
+            <td><p>indicates if the asset has been succesfully committed to the blockchain </p></td>
+        </tr>
+        <tr>
+            <td><p>principal_declared</p></td>
+            <td><p><a href="#Principal">Principal</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>principal_accepted</p></td>
+            <td><p><a href="#Principal">Principal</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_accepted_since</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p>Filtering </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_accepted_before</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_committed_since</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_committed_before</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_declared_since</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>timestamp_declared_before</p></td>
+            <td><p><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>operation</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>behaviour</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>event_attributes</p></td>
+            <td><p><a href="#ListEventsRequest.EventAttributesEntry">ListEventsRequest.EventAttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>user defined event_attributes key max_length: 1024 value max_length: 4096 </p></td>
+        </tr>
+        <tr>
+            <td><p>asset_attributes</p></td>
+            <td><p><a href="#ListEventsRequest.AssetAttributesEntry">ListEventsRequest.AssetAttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>user defined asset_attributes key max_length: 1024 value max_length: 4096 </p></td>
+        </tr>
+        <tr>
+            <td><p>asset</p></td>
+            <td><p><a href="#ListEventsRequest.AssetQuery">ListEventsRequest.AssetQuery</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>proof_mechanism</p></td>
+            <td><p><a href="#ProofMechanism">ProofMechanism</a></p></td>
+            <td><p></p></td>
+            <td><p>mechanism for evidential proof for Events on this Asset </p></td>
+        </tr>
+        <tr>
+            <td><p>filters</p></td>
+            <td><p><a href="#archivist.v1.Filter">archivist.v1.Filter</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p>Outer list AND, inner list INCLUSIVE OR, e.g. [[A, B], [A, B]] "(A OR B) in first position AND (A OR B) in second position (and anything after)"
+The behaviour of these filters matches the filters available for
+selecting assets in access policies:
+On the Access Policy editor page in the UX wire frames, we see locations and a asset_types as two of the items to filter on. A policy that expresses “a policy for all door access readers in Basingstoke or Cambridge”
+[
+    { "or": ["location=basingstoke", "location=cambridge"] },
+    { "or": ["asset_type=door_access_reader"] }
+] </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>page_size</p></td>
+            <td>
+                <ul>
+                    <li>int32.gte: 0</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>uuid</p></td>
+            <td>
+                <ul>
+                    <li>string.pattern: ^(-|[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89aAbB][a-fA-F0-9]{3}-[a-fA-F0-9]{12})$</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>event_attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]+$</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>asset_attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]+$</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td><p>proof_mechanism</p></td>
+            <td>
+                <ul>
+                    <li>enum.defined_only: true</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListEventsRequest.AssetAttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>ListEventsRequest.AssetAttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListEventsRequest.AssetQuery</ac:parameter>
+</ac:structured-macro>
+<h2>ListEventsRequest.AssetQuery</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td><p><a href="#ListEventsRequest.AssetQuery.AttributesEntry">ListEventsRequest.AssetQuery.AttributesEntry</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<h4>Validated Fields</h4>
+<table data-layout="default" ac:local-id="0ea7c513-0a0b-4348-aa7c-53bc9bc71c5a">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 1300.0px;" />
+        </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Field</strong></p></th>
+            <th><p><strong>Validations</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>attributes</p></td>
+            <td>
+                <ul>
+                    <li>map.keys.string.min_len: 1</li>
+                    <li>map.keys.string.max_len: 1024</li>
+                    <li>map.keys.string.pattern: ^[^[:cntrl:]]+$</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListEventsRequest.AssetQuery.AttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>ListEventsRequest.AssetQuery.AttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListEventsRequest.EventAttributesEntry</ac:parameter>
+</ac:structured-macro>
+<h2>ListEventsRequest.EventAttributesEntry</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>key</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>value</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p> </p></td>
+        </tr>
+    </tbody>
+</table>
+<ac:structured-macro ac:name="anchor" ac:schema-version="1" ac:macro-id="4b19e0eb-1e4d-4ff8-9d75-66a33d046a80">
+    <ac:parameter ac:name="">ListEventsResponse</ac:parameter>
+</ac:structured-macro>
+<h2>ListEventsResponse</h2>
+<table data-layout="default" ac:local-id="f67a39c9-77b9-481e-8d7b-721abe827483">
+    <colgroup>
+        <col style="width: 330.0px;" />
+        <col style="width: 360.0px;" />
+        <col style="width: 200.0px;" />
+        <col style="width: 710.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Type</strong></p></th>
+            <th><p><strong>Labels</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>events</p></td>
+            <td><p><a href="#EventResponse">EventResponse</a></p></td>
+            <td><p>repeated</p></td>
+            <td><p> </p></td>
+        </tr>
+        <tr>
+            <td><p>next_page_token</p></td>
+            <td><p><a href="#string">string</a></p></td>
+            <td><p></p></td>
+            <td><p>Token to retrieve the next page of results or empty if there are none. </p></td>
+        </tr>
+    </tbody>
+</table>
+<h3 id="archivist.v2.ListEventsRequest.OrderBy">ListEventsRequest.OrderBy</h3><p>Supported sort orders</p>
+<table data-layout="default" ac:local-id="c3c18cd5-0914-4312-b0d0-47b95f108465">
+    <colgroup>
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+        <col style="width: 300.0px;" />
+    </colgroup>
+    <tbody>
+        <tr>
+            <th><p><strong>Name</strong></p></th>
+            <th><p><strong>Number</strong></p></th>
+            <th><p><strong>Description</strong></p></th>
+        </tr>
+        <tr>
+            <td><p>DEFAULT</p></td>
+            <td><p>0</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>SIMPLEHASHV1</p></td>
+            <td><p>1</p></td>
+            <td><p></p></td>
+        </tr>
+        <tr>
+            <td><p>SIMPLEHASHV2</p></td>
+            <td><p>2</p></td>
+            <td><p></p></td>
         </tr>
     </tbody>
 </table>
