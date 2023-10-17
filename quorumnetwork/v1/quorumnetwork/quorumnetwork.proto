@@ -1,0 +1,62 @@
+
+syntax = "proto3";
+//
+// Structured network for mapping tenant/asset to DLT.
+//
+package archivist.v1;
+option go_package="github.com/rkvst/go-rkvstcommon-api-gen/quorumnetwork/v1/quorumnetwork;quorumnetwork";
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "validate/validate.proto";
+
+// Models the interface between creators and the blockchain. Used in an internal LRU for each
+// creator service
+message QuorumNetwork {
+    // URL that represents the basic ethrpc connection to the blockchain. Must always be specified
+    // even if is_private is true.
+    // XXX: validate as URL rather than min/max len.
+    string node_address = 1 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "scheme://host:port for the tenants resident quorum node"
+            max_length: 1024
+            min_length: 1
+        },
+        (validate.rules).string = {min_len: 1, max_len: 1024}
+    ];
+
+    // URL that represents the ethrpc connection to the blockchain private transaction manager.
+    // This is used if is_private is true. It is a validation error if this is empty and
+    // is_private is true.
+    // XXX: validate as URL rather than min/max len.
+    string tessera_address = 2 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "scheme://host:port of tenants resident tessera node if privacy preserving transactions are enabled for the tenant"
+            max_length: 1024
+            min_length: 1
+        },
+        (validate.rules).string = {min_len: 1, max_len: 1024}
+    ];
+
+    // DLT tessera public key. Not currently used anywhere?
+    string tessera_key = 3 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Tessera key."
+            max_length: 1024
+            min_length: 1
+        },
+        (validate.rules).string = {min_len: 1, max_len: 1024}
+    ];
+
+    // Topic to send the event on the simple hash path.
+    string topic = 4 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Event Sender Topic."
+            max_length: 1024
+            min_length: 1
+        },
+        (validate.rules).string = {min_len: 1, max_len: 1024}
+    ];
+
+    // If true then the tessera private transactions are enabled.
+    bool is_private = 5 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Is the tessaera private?"
+        }
+    ];
+}
+

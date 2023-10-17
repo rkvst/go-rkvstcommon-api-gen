@@ -1,0 +1,432 @@
+syntax = "proto3";
+package archivist.v1;
+option go_package="github.com/rkvst/go-rkvstcommon-api-gen/tenancies/v1/tenancies;tenancies";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "caps/v1/caps/caps.proto";
+import "tenancies/v1/tenancies/messages.proto";
+import "tenancies/v1/tenancies/tenantusers_messages.proto";
+import "tenancies/v1/tenancies/idtokenhint.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "Tenancies API"
+        description: "API to manage tenancies"
+        version: "1.0"
+        contact: {
+            name: "RKVST"
+            url: "https://www.rkvst.com"
+         }
+    };
+    base_path: "/_api";
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+    tags: [
+     {
+       name: "Users",
+       description: "Manage users in your RKVST tenancy"
+     },
+     {
+       name: "Tenancies",
+       description: "Manage your RKVST tenancy"
+     },
+     {
+       name: "Unsupported",
+       description: "Internal APIs that are unstable and should not be used in a production setting."
+     }
+   ];
+};
+
+service Tenancies {
+
+    /*
+     * Get the tenant caps limits for current tenant (associated with authenticated principal.)
+     */
+    rpc GetLimitsForCurrentTenant(GetLimitsForCurrentTenantRequest) returns (GetLimitsForCurrentTenantResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/caps"
+        };
+
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: [ "Tenancies", "Unsupported" ]  // Unsupported is signal for future OAPI parsing
+            summary: "Fetch map of resource: caps for authenticated principal's tenant"
+            description: "Not stable or officially supported. Fetch the map of resource: caps for authenticated principal's tenant"
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+        };
+    }
+    rpc GetInviteTokenHint(InviteTokenHintRequest) returns (InviteTokenHintResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/invitetokenhint"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create an invite token"
+            description: "Internal api to allow creation of invite token."
+            responses: {
+                key: "400";
+                value: {
+                    description: "Supplied parameters were invalid"
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to retrieve the tenant id."
+                }
+            }
+        };
+    }
+    /*
+     * get an id_token_hint to sign the user into  brand new tenancy
+     * Note: this is a private api and is grpc only
+     */
+    rpc GetNewTenantTokenHint(google.protobuf.Empty) returns (UserTenantIDTokenHintResponse);
+    /*
+     * Get the list of tenant root user principals
+     */
+    rpc GetTenantRootPrincipals(GetTenantRootPrincipalsRequest) returns (GetTenantRootPrincipalsResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/root_principals"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Fetch the current list of tenant root user principals"
+            description: "Fetch the current list of tenant root user principals."
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to update the root principals."
+                }
+            }
+        };
+    }
+    /*
+     * Gets tenant information appropriate for an admin.
+     */
+    rpc GetAdminTenantInfo(GetAdminTenantInfoRequest) returns (AdminTenantResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/self"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Get tenant record"
+            description: "Returns an administrator's view of tenant for which they're authenticated"
+            responses: {
+                key: "400";
+                value: {
+                    description: "Supplied parameters were invalid"
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to retrieve the tenant id."
+                }
+            }
+        };
+    }
+    /*
+     * Update the tenant record for specified tenant. This method is private to root principals.
+     */
+    rpc UpdateTenant(UpdateTenantRequest) returns (AdminTenantResponse) {
+        option (google.api.http) =  {
+            patch: "/archivist/v1/tenancies/self"
+            body: "tenant"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Update tenant record"
+            description: "Enables a root principal of the tenant to update the tenant record."
+            responses: {
+                key: "400";
+                value: {
+                    description: "Returned when the request is badly formed."
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to perform this action."
+                }
+            }
+            responses: {
+                key: "404";
+                value: {
+                    description: "Returned when the referenced tenant does not exist."
+                }
+            }
+        };
+    }
+    /*
+     * Get the tenant ID given IDP details. Create tenant if not exists.
+     */
+    rpc GetTenantID(GetTenantIDRequest) returns (TenantIDResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/tenantid"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Get ID of tenant associated with issuer and/or subject, and create if not exists."
+            description: "Get ID of tenant associated with issuer and/or subject, and create if not exists."
+            responses: {
+                key: "400";
+                value: {
+                    description: "Returned when the user doesn't provide an issuer or subject to filter on."
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to retrieve the tenant id."
+                }
+            }
+        };
+    }
+
+
+    /*
+     * Get the Public Tenant
+     */
+     rpc GetPublicTenant(google.protobuf.Empty) returns (TenantResponse) {
+    }
+
+    /*
+     * Get the tenant information for the authenticated user making the request
+     */
+    rpc GetCurrentTenant(CurrentTenantRequest) returns (TenantResponse) {}
+
+    /*
+     * List all tenanancies
+     */
+    rpc ListTenants(ListTenantsRequest) returns (ListTenantsResponse) {}
+
+    /*
+     * Get the tenant information for a specific tenant
+     */
+    rpc GetTenant(GetTenantRequest) returns (TenantResponse) {}
+
+    /*
+     * Get the tenant information for a specitic DLT wallet address.
+     */
+    rpc GetTenantFromWalletAddress(GetTenantFromWalletAddressRequest) returns (TenantResponse) {}
+
+    /*
+     * Get the tenant caps limits.
+     */
+    rpc GetTenantLimits(GetTenantLimitsRequest) returns (TenantLimitsResponse) {}
+
+
+    /*
+     * Update the list of tenant root user principals
+     */
+    rpc UpdateTenantRootPrincipals(UpdateTenantRootPrincipalsRequest) returns (GetTenantRootPrincipalsResponse) {
+        option (google.api.http) =  {
+            patch: "/archivist/v1/tenancies/root_principals"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Update the list of tenant root user principals"
+            description: "Replace the list of tenant root user principals.  Note that you are not able to remove yourself from the list."
+            responses: {
+                key: "400";
+                value: {
+                    description: "Returned when the request is badly formed.  Including, but not limited to, attempting to remove yourself as a root uesr principal."
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to update the root principals."
+                }
+            }
+        };
+    }
+    /*
+     * lists Users.
+     */
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/users"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "List Users",
+            description: "Returns a list of Users active in or invited to the tenant."
+            responses: {
+                key: "400";
+                value: {
+                    description: "Returned when the request is badly formed."
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to read the users."
+                }
+            }
+            responses: {
+                key: "404";
+                value: {
+                    description: "Returned when the identified users don't exist.";
+                }
+            }
+            responses: {
+                key: "500";
+                value: {
+                    description: "Returned when the underlying storage system returns an error.";
+                }
+            }
+        };
+    }
+    /*
+     * delete User
+     */
+    rpc DeleteUser(DeleteUserRequest) returns (User) {
+        option (google.api.http) =  {
+            delete: "/archivist/v1/tenancies/users/{user_uuid}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Deletes User",
+            description: "Deletes a User from the tenancy."
+            responses: {
+                key: "400";
+                value: {
+                    description: "Returned when the request is badly formed."
+                }
+            }
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "403";
+                value: {
+                    description: "Returned when the user is not authorized to read the user."
+                }
+            }
+            responses: {
+                key: "500";
+                value: {
+                    description: "Returned when the underlying storage system returns an error.";
+                }
+            }
+        };
+    }
+    /*
+     * Get the cap of Users allowed per tenant.
+     * e.g tenant A can only have 5 users.
+     */
+    rpc GetUserCaps(GetCapsTenantUserRequest) returns (archivist.v1.Caps) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/users:caps"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            tags: [ "Tenancies", "Unsupported" ]  // Unsupported is signal for future OAPI parsing
+            summary: "Get the remaining number of users that can be added to the tenant."
+            description: "Not stable or officially supported. Get the remaining number of users that can be added to the tenant."
+            responses: {
+                key: "401";
+                value: {
+                    description: "Returned when the user is not authenticated to the system."
+                }
+            }
+            responses: {
+                key: "429";
+                value: {
+                    description: "Returned when a user exceeds their subscription's rate limit for requests.";
+                }
+            }
+        };
+    }
+    /*
+     * Get the public tenant information
+     */
+     rpc GetPublicTenantInfo(GetPublicTenantInfoRequest) returns (GetPublicTenantInfoResponse) {
+        option (google.api.http) =  {
+            get: "/archivist/v1/tenancies/{uuid}:publicinfo"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Public Tenant Information."
+            description: "Return the publically avaialble tenant information."
+        };
+    }
+    /*
+     * Set Time of last Anchor
+     */
+    rpc SetLastAnchorTime(SetLastAnchorTimeRequest) returns (TenantResponse) {
+    }
+    /*
+     * Set Anchor Interval
+     */
+    rpc SetAnchorInterval(SetAnchorIntervalRequest) returns (TenantResponse) {
+    }
+    /*
+     * Update the tenant record for specified tenant. This method is internal
+     */
+    rpc UpdateTenantConfiguration(UpdateTenantConfigurationRequest) returns (TenantResponse) {
+    }
+    /*
+     * Get the topic corresponding to the given chainID of the quorum network and the
+     *   tessera public key within that network.
+     */
+    rpc GetTopicFromTesseraPubKey(TopicFromPubKeyRequest) returns (TopicFromPubKeyResponse) {
+
+    }
+    /*
+     * Count Users
+     */
+    rpc CountUsers(google.protobuf.Empty) returns (CountUsersResponse) {
+    }
+
+    /*
+     * get an id_token_hint to sign the user into their selected tenant
+     * Note: this is a private api and is grpc only
+     */
+    rpc GetUserTenantIDTokenHint(UserTenantIDTokenHintRequest) returns (UserTenantIDTokenHintResponse);
+}

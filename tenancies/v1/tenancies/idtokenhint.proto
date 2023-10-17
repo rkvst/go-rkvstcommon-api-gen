@@ -1,0 +1,35 @@
+syntax = "proto3";
+package archivist.v1;
+option go_package="github.com/rkvst/go-rkvstcommon-api-gen/tenancies/v1/tenancies;tenancies";
+
+import "validate/validate.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/timestamp.proto";
+
+/*
+ * NOTE: Internal API webgate -> tenancies for minting tokens that parameterize
+ * b2c user journeys
+ */
+
+message InviteTokenHintRequest {
+    string identity = 1 [(validate.rules).string.max_len = 1024];
+    string tenant_id = 2 [(validate.rules).string.max_len = 1024];
+    string email = 3 [(validate.rules).string.max_len = 1024];
+}
+
+message InviteTokenHintResponse {
+    string token = 1;
+
+    google.protobuf.Timestamp expiry_time = 2 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "invite expiry time"
+        read_only: true
+    }];
+}
+
+message UserTenantIDTokenHintRequest {
+    string tenant_id = 1 [(validate.rules).string.max_len = 1024];
+}
+
+message UserTenantIDTokenHintResponse {
+    string token = 1;
+}

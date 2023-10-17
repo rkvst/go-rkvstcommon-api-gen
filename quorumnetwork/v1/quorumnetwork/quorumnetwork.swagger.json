@@ -1,0 +1,16 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "quorumnetwork/v1/quorumnetwork/quorumnetwork.proto",
+    "description": "Structured network for mapping tenant/asset to DLT.",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {}
+}

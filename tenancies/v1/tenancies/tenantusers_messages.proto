@@ -1,0 +1,146 @@
+syntax = "proto3";
+package archivist.v1;
+option go_package="github.com/rkvst/go-rkvstcommon-api-gen/tenancies/v1/tenancies;tenancies";
+
+import "validate/validate.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+/*
+ * NOTE: the user uuid inside the identity is the same uuid as the b2c active directory id:
+ *       https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-1.0&tabs=http#response-1
+*/
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "TenancyUserManagement API"
+        description: "Simple API for Tenancy User Management"
+        version: "1.0"
+        contact: {
+            name: "RKVST"
+            url: "https://www.rkvst.com"
+        }
+    };
+    base_path: "/_api";
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+};
+
+// status of the user in the tenancy
+enum UserStatus {
+    STATUS_UNSPECIFIED = 0;
+    ACTIVE = 1;
+    INVITED = 2;
+}
+
+message User {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'User Data'
+        }
+        example: "{"
+            "  \"identity\":\"users/87d349ed-44d7-43e1-9a83-5f2406dee5bd\","
+            "  \"email\": \"frank123@example.com\","
+            "  \"issuer\":\"frank@example.com\","
+            "  \"subject\":\"franky123\","
+            "  \"user_status\": \"ACTIVE\""
+            "}"
+    };
+
+    string identity = 1 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "user identity `{UUID}`"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+
+    string email = 2 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "User email.",
+        }
+    ];
+
+    string issuer = 3 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "optional issuer of the principal identity. Where the issuer is not provided the subject is treated as a free string"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+
+    string subject = 4 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "unique identifier of the principal (within issuer context)"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+
+    string displayName = 5 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "display name for the user"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+}
+
+message ListUsersRequest {
+    string user_uuid = 1 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "user UUID, found in the identifier `users/{UUID}`"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+
+    string email = 2 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "user email.",
+        }
+    ];
+
+    string displayName = 3 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "display name for the user"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+
+    int32 page_size = 4 [(validate.rules).int32.gte = 0];
+    string page_token = 5;
+}
+
+message ListUsersResponse {
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'List of Users (or the next page in a continuing '
+            ' list request)'
+        }
+        example: "{"
+            "  \"users\": ["
+            "    {"
+            "      \"identity\":\"users/87d349ed-44d7-43e1-9a83-5f2406dee5bd\","
+            "      \"email\": \"frank123@example.com\","
+            "      \"issuer\":\"frank@example.com\","
+            "      \"subject\":\"franky123\","
+            "      \"user_status\": \"ACTIVE\""
+            "    }"
+            "  ],"
+            "  \"page_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6InN0dW50aWR\""
+            "}"
+    };
+
+    repeated User users = 1;
+
+    // Token to retrieve the next page of results or empty if there are none.
+    string next_page_token = 2;
+}
+
+message DeleteUserRequest {
+    string user_uuid = 1 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "user UUID, found in the identifier `users/{UUID}`"
+        max_length: 1024
+    },
+    (validate.rules).string.max_len = 1024];
+}
+
+message CountUsersResponse {
+    int64 total = 1;
+}
+
+// GetCapsTenantUserRequest adds the user id onto the request
+message GetCapsTenantUserRequest { }

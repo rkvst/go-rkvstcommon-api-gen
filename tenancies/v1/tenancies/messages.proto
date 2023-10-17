@@ -1,0 +1,542 @@
+syntax = "proto3";
+package archivist.v1;
+option go_package="github.com/rkvst/go-rkvstcommon-api-gen/tenancies/v1/tenancies;tenancies";
+
+import "assets/v2/assets/principal.proto";
+import "assets/v2/assets/enums.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "validate/validate.proto";
+import "quorumnetwork/v1/quorumnetwork/quorumnetwork.proto";
+import "google/protobuf/field_mask.proto";
+
+enum Tier {
+    TIER_UNSPECIFIED = 0;
+    FREE = 1;
+    PREMIUM = 2;
+}
+
+message GetTenantIDRequest {
+    string issuer = 1 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Issuer of the principal identity."
+            max_length: 1024
+            min_length: 1
+        },
+        (validate.rules).string = {min_len: 1, max_len: 1024}
+    ];
+
+    string subject = 2 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Unique identifier of the principal (within issuer context.) Used if social."
+            max_length: 1024
+            min_length: 1
+        },
+        (validate.rules).string = {min_len: 1, max_len: 1024}
+    ];
+
+    bool is_social = 3 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Is the issuer social?"
+        }
+    ];
+
+    string email = 4 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Email address of the principal."
+        }
+    ];
+
+    string oid = 5 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "B2C User ID if available"
+        }
+    ];
+    bool is_new_user = 6 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "True if the user was just created (only valid when invoked from b2c)"
+        }
+    ];
+
+    string jit_loginhint_tenant_id = 7 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Login hint for the tenant the existing user is requesting to login to."
+        }
+    ];
+
+    string jit_invitehint_tenant_id = 8 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Invite hint carrying the id of the tenant the new users was invited to"
+        }
+    ];
+    string jit_invitehint_recipient_email = 9 [(grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Invite hint carrying the email the invitation was sent to"
+        }
+    ];
+    string jit_invitehint_invite_id = 10 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Invite idenity."
+        },
+        (validate.rules).string = {uuid: true, ignore_empty: true}
+    ];
+    bool jit_loginhint_new_tenant = 11 [ (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+        description: "Hint that this is new tenant request."
+        }
+    ];
+}
+
+message TenantIDResponse {
+    string identity = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant identity `{UUID}`"
+            read_only: true
+        }
+    ];
+
+    Tier tier = 2 [
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant tier FREE or PREMIUM"
+            read_only: true
+        }
+    ];
+
+    bool new_tenant = 3 [
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "true if this request created a new tenant"
+            read_only: true
+        }
+    ];
+}
+
+/*
+ * Get the tenant information for the authenticated user making the request
+ */
+message CurrentTenantRequest {
+}
+
+/*
+ * Get the tenant information for a specitic tenant
+ */
+message GetTenantRequest {
+    string uuid = 1;
+}
+
+/*
+ * Get the tenant information for a specitic DLT wallet address
+ */
+message GetTenantFromWalletAddressRequest {
+   string wallet_address = 1;
+}
+
+// This is used for PATCHing self - so the tenant is taken from the calling principal
+message EnterpriseSSOConfig {
+    string policy_id = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Per-tenant B2C policy ID. Value controlled by RKVST"
+            read_only: true
+        }
+    ];
+
+    string config_url = 2 [
+        (validate.rules).string = {
+            min_len: 1,
+            max_len: 1024,
+        }
+    ];
+
+    string issuer = 3 [
+        (validate.rules).string = {
+            min_len: 1,
+            max_len: 1024,
+        }
+    ];
+
+    string client_id = 4 [
+        (validate.rules).string = {
+            min_len: 1,
+            max_len: 1024,
+        }
+    ];
+
+    // The secret passed here when setting, but must not be stored in plaintext or logged.
+    string client_secret = 5 [
+        (validate.rules).string = {
+            min_len: 1,
+            max_len: 1024,
+        }
+    ];
+}
+
+/*
+ * Tenant information
+ */
+message TenantResponse {
+    string identity = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant identity `{UUID}`"
+            read_only: true
+        }
+    ];
+    // root_principal is DEPRECATED and will be removed in a future release
+    // it remains for old installations and for the one true tenant IDP issuer
+    archivist.v2.Principal root_principal = 2;
+    string wallet_key_name = 3;
+    string wallet_address = 4;
+
+    reserved 5, 6;
+    reserved "oid", "is_new_user";
+
+    repeated archivist.v2.Principal root_principals = 7;
+    map<string, int32> limits = 8;
+
+    // We dont need these as we can figure out if things enabled from the limits map
+    // above
+    // storage_integrity includes the enabled storage_integrity values for the tenant.
+    // Currently we only support LEDGER *and* TENANT_STORAGE or just TENANT_STORAGE
+    // This is only here for migration to new ProofMechanism - will be reserved at a
+    // later date.
+    repeated archivist.v2.StorageIntegrity storage_integrity = 9;
+
+    // proof_mechanism includes the enabled proof_mechanism values for the tenant.
+    // Currently we only support KHIPU *and* SIMPLE_HASH or just SIMPLE_HASH
+    repeated archivist.v2.ProofMechanism proof_mechanism = 10;
+
+    Tier tier = 11;
+
+    // map of DLT networks indexed by chain ID
+    map<string, archivist.v1.QuorumNetwork> quorum_networks = 12;
+
+    // verified domain for the tenant
+    string verified_domain = 13;
+
+    // Friendly display name shown to users within the tenant.
+    string display_name = 14 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Customer friendly name for the tenant."
+            max_length: 128
+        },
+        (validate.rules).string.max_len = 128
+    ];
+
+    // timestamp of last anchor
+    int64 last_anchor_time = 15;
+
+    // hash schedule in seconds
+    int32 anchor_interval = 16;
+
+    bool enterprise_sso_enabled = 17;
+    EnterpriseSSOConfig enterprise_sso_config = 18;
+}
+
+message SetLastAnchorTimeRequest {
+    string identity = 1;
+    int64 last_anchor_time = 2;
+}
+
+/*
+ * Set the frequency of anchor hash generation.
+ * Ranges from 1 hour to 1 year
+ */
+message SetAnchorIntervalRequest {
+    string identity = 1;
+    int32 anchor_interval = 2 [(validate.rules).int32 = {gte: 60, lt: 31536000 }];
+}
+
+/*
+ * Get the list of current tenant root user principals
+ */
+message GetTenantRootPrincipalsRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Request the list of tenant root user principals'
+        }
+    };
+}
+
+/*
+ * Get admin-only information for the current tenancy
+ */
+message GetAdminTenantInfoRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Request the list of tenant root user principals'
+        }
+    };
+}
+
+/*
+ * Get publicly available information for a specific tenant
+ */
+ message GetPublicTenantInfoRequest {
+    string uuid = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Specify the tenant UUID where `tenant/{uuid}` is the Tenant Identity e.g. `add30235-1424-4fda-840a-d5ef82c4c96f` from Identity `tenant/add30235-1424-4fda-840a-d5ef82c4c96f`"
+            read_only: true
+        },
+        (validate.rules).string.uuid = true
+    ];
+}
+
+/*
+ * Get publicly available information for a specific tenant
+ */
+message GetPublicTenantInfoResponse {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Publically available information for a tenant.'
+        }
+        example: "{"
+            "  \"identity\": \"tenant/add30235-1424-4fda-840a-d5ef82c4c96f\","
+            "  \"verified_domain\": \"exampleltd\""
+            "}"
+    };
+
+    string identity = 1;
+    string verified_domain = 2;
+}
+
+/*
+ * A list of current tenant root user principals
+ */
+message GetTenantRootPrincipalsResponse {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'List of tenant root user principals'
+        }
+        example: "{"
+            "  \"root_principals\": ["
+            "    {"
+            "      \"display_name\": \"Bob Smith\","
+            "      \"issuer\": \"job.idp.server/1234\","
+            "      \"subject\": \"08838336-c357-460d-902a-3aba9528dd22\","
+            "      \"email\": \"bob@job\""
+            "    }"
+            "  ]"
+            "}"
+    };
+
+    repeated archivist.v2.Principal root_principals = 1;
+}
+
+message ListTenantsRequest {
+    int32 page_size = 1 [(validate.rules).int32.gte = 0];
+    string page_token = 2;
+
+    // list tenants with a specified proof mechanism enabled
+    archivist.v2.ProofMechanism proof_mechanism = 3 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "list tenants with the specified proof mechainism enabled"
+        },
+        (validate.rules).enum.defined_only = true
+    ];
+
+    bool enterprise_sso_enabled = 4 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "list tenants with enterprise sso enabled"
+        }
+    ];
+
+    string verified_domain = 5 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "list tenants with this verified domain"
+        }
+    ];
+}
+
+message ListTenantsResponse {
+    repeated TenantResponse tenants = 1;
+    string next_page_token = 2;
+}
+
+/*
+ * Update the list of tenant root user principals
+ */
+message UpdateTenantRootPrincipalsRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description: 'Update the list of tenant root user principals'
+        }
+        example: "{"
+            "  \"root_principals\": ["
+            "    {"
+            "      \"display_name\": \"Bob Smith\","
+            "      \"issuer\": \"job.idp.server/1234\","
+            "      \"subject\": \"08838336-c357-460d-902a-3aba9528dd22\","
+            "      \"email\": \"bob@job\""
+            "    }"
+            "  ]"
+            "}"
+    };
+
+    repeated archivist.v2.Principal root_principals = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "New list of tenant root user principals"
+        }
+    ];
+}
+
+
+/*
+ * Update the tenant's enabled asset proof mechanisms
+ */
+message UpdateProofMechanismRequest {
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Update the enabled proof mechanisms for the tenant'
+        }
+    };
+    string identity = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant identity `{UUID}`"
+            read_only: true
+        }
+    ];
+
+    repeated archivist.v2.ProofMechanism proof_mechanism = 2 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "proof mechanism"
+            read_only: true
+        },
+        (validate.rules).repeated = {
+	    unique: true,
+	    min_items: 1,
+	    max_items: 3
+	}
+    ];
+}
+
+message UpdateProofMechanismResponse { }
+
+/*
+ * Get the list of current tenant caps limits
+ */
+message GetTenantLimitsRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Request the list of tenant caps limits'
+        }
+    };
+    string identity = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant identity `{UUID}`"
+            read_only: true
+        }
+    ];
+}
+
+/*
+ * Get the list of current tenant caps limits for current tenant
+ */
+message GetLimitsForCurrentTenantRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description: "Request map of tenant caps for the authenticated principal's tenant"
+        }
+    };
+}
+
+message GetLimitsForCurrentTenantResponse {
+    map<string, int32> limits = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "map of caps for authenticated principal's tenancy"
+            read_only: true
+        }
+    ];
+}
+
+message TenantLimitsResponse {
+    string identity = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant identity `{UUID}`"
+            read_only: true
+        }
+    ];
+    map<string, int32> limits = 2;
+}
+
+message TopicFromPubKeyRequest {
+    // the chain id of the quorum network
+    string chainID = 1;
+
+    // the tessera public key
+    string tesseraPubKey = 2;
+}
+
+message TopicFromPubKeyResponse {
+    string topic = 1;
+}
+
+// From a root principal's perspective this is their tenant "resource". Other details
+// captured in TenantResponse are internal, and not for direct consumption by users.
+message AdminTenantResponse {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'View of own tenant record for a root principal.'
+        }
+        example: "{"
+            "    \"identity\": \"tenant/08838336-c357-460d-902a-3aba9528dd22\","
+            "    \"verified_domain\": \"foo.com\","
+            "    \"display_name\": \"My First Tenancy\""
+            "}"
+    };
+
+    string identity = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "tenant identity `{UUID}`"
+            read_only: true
+        }
+    ];
+
+    string verified_domain = 2;
+
+    string display_name = 3 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Customer friendly name for the tenant."
+            max_length: 128
+        },
+        (validate.rules).string.max_len = 128
+    ];
+
+    bool enterprise_sso_enabled = 4;
+    EnterpriseSSOConfig enterprise_sso_config = 5;
+}
+
+message UpdatableTenantPayload {
+    string display_name = 1 [
+        (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+            description: "Customer friendly name for the tenant."
+            max_length: 128
+        },
+        (validate.rules).string.max_len = 128
+    ];
+
+    EnterpriseSSOConfig enterprise_sso_config = 2;
+}
+
+message UpdateTenantRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Updates a tenant record. Currently only allows display_name to be set.'
+        }
+        example: "{"
+            "    \"tenant\": {"
+            "      \"display_name\": \"foobar\""
+            "     }"
+            "}"
+    };
+
+    UpdatableTenantPayload tenant = 1;
+    google.protobuf.FieldMask mask = 2;
+}
+
+message UpdateTenantConfigurationRequest {
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_schema) = {
+        json_schema: {
+            description:
+            'Updates a tenant record.'
+        }
+    };
+
+    string uuid = 1;
+    TenantResponse configuration = 2;
+    google.protobuf.FieldMask mask = 3;
+}
