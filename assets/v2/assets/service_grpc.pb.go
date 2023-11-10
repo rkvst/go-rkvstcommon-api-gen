@@ -11,7 +11,7 @@ package assets
 
 import (
 	context "context"
-	caps "github.com/rkvst/go-rkvstcommon-api-gen/caps/v1/caps"
+	caps "github.com/datatrails/go-datatrails-common-api-gen/caps/v1/caps"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

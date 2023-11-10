@@ -5,8 +5,8 @@
     "description": "API for public asset and event management.",
     "version": "2.0",
     "contact": {
-      "name": "RKVST",
-      "url": "https://www.rkvst.com"
+      "name": "DataTrails",
+      "url": "https://www.datatrails.ai"
     }
   },
   "tags": [
@@ -474,7 +474,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Asset."
+      "description": "This describes DataTrails Asset."
     },
     "v2Attribute": {
       "type": "object",
@@ -665,7 +665,7 @@
           "maxLength": 1024
         }
       },
-      "description": "This describes RKVST Event."
+      "description": "This describes DataTrails Event."
     },
     "v2ListAttr": {
       "type": "object",
