@@ -12,7 +12,7 @@ package assets
 import (
 	_ "github.com/envoyproxy/protoc-gen-validate/validate"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
-	caps "github.com/rkvst/go-rkvstcommon-api-gen/caps/v1/caps"
+	caps "github.com/datatrails/go-datatrails-common-api-gen/caps/v1/caps"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
