@@ -6,7 +6,7 @@ module github.com/datatrails/go-datatrails-common-api-gen
 go 1.21
 
 require (
-	github.com/datatrails/go-datatrails-common v0.9.0
+	github.com/datatrails/go-datatrails-common v0.10.2
 	github.com/envoyproxy/protoc-gen-validate v0.10.1
 	github.com/google/uuid v1.3.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.17.1
