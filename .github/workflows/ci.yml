@@ -56,7 +56,6 @@ jobs:
           git status
           if git diff --exit-code; then
             echo "::warning :: no changes found"
-            exit 1
           fi
 
       # We don't, as a matter of policy, lint generated code. Any deep tests on
@@ -70,12 +69,16 @@ jobs:
       - name: Build the sources
         working-directory: repo
         run: |
-          go build -v ./...
+          go build ./...
           go test ./...
 
       - name: Commit the updates
         working-directory: repo
         run: |
+          if git diff --exit-code; then
+            echo "::warning :: no changes found"
+            exit 0
+          fi
           git config --global user.name 'CI Workflow'
           git config --global user.email $COMMIT_EMAIL
           git commit -am "feat: updated to go-datatrails-common-api@$TAG"
@@ -87,4 +90,4 @@ jobs:
           gh release create \
             --latest \
             --generate-notes \
-            --t "feat: updated to go-datatrails-common-api@$TAG"
+            --title "feat: updated to go-datatrails-common-api@$TAG"
