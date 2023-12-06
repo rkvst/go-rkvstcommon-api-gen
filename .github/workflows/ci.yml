@@ -44,7 +44,7 @@ jobs:
           # Current top level files are just:
           #  go.mod
           #  go.sum
-          for dd in $(ls -d repo/*/); do rm -r repo/$dd; done
+          for dd in $(ls -d repo/*/); do rm -r $dd; done
 
           gh --repo $ORG/$REPO release download $TAG \
             -p 'go-datatrails-common-api-gen.tar.gz'
