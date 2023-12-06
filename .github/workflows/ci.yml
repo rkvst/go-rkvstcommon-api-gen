@@ -38,14 +38,20 @@ jobs:
           echo "TAG=$TAG"
           # Note that it is not forced. only non hidden files and directories
           # are removed.
-          rm -r repo/*
+
+          # WARNING: top level files must be removed by hand if the are
+          # introduced by the archive and later removed.
+          # Current top level files are just:
+          #  go.mod
+          #  go.sum
+          for dd in $(ls -d repo/*/); do rm -r repo/$dd; done
+
           gh --repo $ORG/$REPO release download $TAG \
             -p 'go-datatrails-common-api-gen.tar.gz'
-          # pushd repo
-          # mv go-datatrails-common-api-gen.tar.gz ../
-          # popd
+          tar -zxf go-datatrails-common-api-gen.tar.gz
+
           pushd repo
-          tar -zxf ../go-datatrails-common-api-gen.tar.gz
+          cp -r ../go-datatrails-common-api-gen/* .
           git status
           git log --stat
           git diff --stat
