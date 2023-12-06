@@ -87,7 +87,7 @@ jobs:
       - name: Release the updates
         working-directory: repo
         run: |
-          gh release create \
+          gh release create $TAG \
             --latest \
             --generate-notes \
             --title "feat: updated to go-datatrails-common-api@$TAG"
