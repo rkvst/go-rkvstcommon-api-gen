@@ -36,8 +36,9 @@ jobs:
           tar -zxf go-datatrails-common-api-gen.tar.gz
 
       - uses: actions/checkout@v4
-        # fetch-tags: true
-        path: repo
+        with:
+          # fetch-tags: true
+          path: repo
 
       - name: Update the sources
         run: |
