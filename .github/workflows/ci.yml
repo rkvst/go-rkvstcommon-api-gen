@@ -13,11 +13,15 @@ jobs:
     steps:
       - name: Resolve TAG
         run: |
+          xTAG=$(curl -sL https://api.github.com/repos/${ORG}/${REPO}/releases/latest |
+              jq -r ".tag_name")
+
           if [[ "$TAG" == "latest" ]]; then
+            echo "::info ::resolving tag ..."
             TAG=$(curl -sL https://api.github.com/repos/${ORG}/${REPO}/releases/latest |
               jq -r ".tag_name")
           fi
-          echo "::info ::resolved tag: $TAG"
+          echo "::info ::resolved tag: $TAG ... $xTAG"
         env:
           TAG: ${{ inputs.tag }}
           ORG: datatrails
