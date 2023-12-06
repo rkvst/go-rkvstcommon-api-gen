@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Resolve TAG
         run: |
-          if [[ "$TAG" = "latest" ]]; then
+          if [[ "$TAG" == "latest" ]]; then
             TAG=$(curl -sL https://api.github.com/repos/${ORG}/${REPO}/releases/latest |
               jq -r ".tag_name")
           fi
