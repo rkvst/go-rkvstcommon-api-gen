@@ -40,7 +40,7 @@ jobs:
           # are removed.
           rm -r repo/*
           pushd repo
-          gh release download $TAG \
+          gh --repo $ORG/$REPO release download $TAG \
             -p 'go-datatrails-common-api-gen.tar.gz'
           mv go-datatrails-common-api-gen.tar.gz ../
           popd
