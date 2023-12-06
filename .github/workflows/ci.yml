@@ -14,6 +14,9 @@ jobs:
       ORG: datatrails
       REPO: go-datatrails-common-api
       ARTIFACT: go-datatrails-common-api.tar.gz
+      COMMIT_EMAIL: ci@github.datatrails.ai
+      GH_TOKEN: ${{ github.token }}
+
     steps:
       - name: Resolve TAG
         run: |
@@ -32,8 +35,6 @@ jobs:
           path: repo
 
       - name: Update the sources
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           echo "TAG=$TAG"
           # Note that it is not forced. only non hidden files and directories
@@ -53,7 +54,37 @@ jobs:
           pushd repo
           cp -r ../go-datatrails-common-api-gen/* .
           git status
-          git log --stat
-          git diff --stat
-          git whatchanged
-          popd
+          if ! git diff --exit-code
+            echo "::warning :: no changes found"
+            exit 1
+          fi
+
+      # We don't, as a matter of policy, lint generated code. Any deep tests on
+      # the api generation should be done in go-datatrails-common-api. This is
+      # just a simple check for completely broken source
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21.x'
+
+      - name: Build the sources
+        working-directory: repo
+        run: |
+          go build -v ./...
+          go test ./...
+
+      - name: Commit the updates
+        working-directory: repo
+        run: |
+          git config --global user.name 'CI Workflow'
+          git config --global user.email $COMMIT_EMAIL
+          git commit -am "feat: updated to go-datatrails-common-api@$TAG"
+          git push
+
+      - name: Release the updates
+        working-directory: repo
+        run: |
+          gh release create \
+            --latest \
+            --generate-notes \
+            --t "feat: updated to go-datatrails-common-api@$TAG"
