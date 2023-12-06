@@ -28,6 +28,8 @@ jobs:
           TAG: ${{ inputs.tag }}
 
       - name: Download release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir exported && cd exported
           echo "TAG=$TAG"
@@ -41,6 +43,8 @@ jobs:
           path: repo
 
       - name: Update the sources
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           # Note that it is not forced. only non hidden files and directories
           # are removed.
