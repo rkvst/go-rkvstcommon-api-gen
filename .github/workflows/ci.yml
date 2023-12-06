@@ -39,15 +39,15 @@ jobs:
           # Note that it is not forced. only non hidden files and directories
           # are removed.
           rm -r repo/*
-          pushd repo
           gh --repo $ORG/$REPO release download $TAG \
             -p 'go-datatrails-common-api-gen.tar.gz'
-          mv go-datatrails-common-api-gen.tar.gz ../
-          popd
+          # pushd repo
+          # mv go-datatrails-common-api-gen.tar.gz ../
+          # popd
           pushd repo
           tar -zxf ../go-datatrails-common-api-gen.tar.gz
-          popd
           git status
           git log --stat
           git diff --stat
           git whatchanged
+          popd
