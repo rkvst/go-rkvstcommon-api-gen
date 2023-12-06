@@ -27,7 +27,28 @@ jobs:
         env:
           TAG: ${{ inputs.tag }}
 
-      - run: |
+      - name: Download release artifacts
+        working-directory: exported
+        run: |
           echo "TAG=$TAG"
+          gh release download $TAG \
+            -p 'go-datatrails-common-api-gen.tar.gz'
+          tar -zxf go-datatrails-common-api-gen.tar.gz
+
+      - uses: actions/checkout@v4
+        # fetch-tags: true
+        path: repo
+
+      - name: Update the sources
+        run: |
+          # Note that it is not forced. only non hidden files and directories
+          # are removed.
+          rm -r repo/*
+          cd repo
+          cp -r ../exported/go-datatrails-common-api-gen
+          git status
+          git log --stat
+          git diff --stat
+          git whatchanged
 
 
