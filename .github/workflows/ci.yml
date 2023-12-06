@@ -1,0 +1,19 @@
+name: ci
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'The tag to find in the upstream and replace here, the default is latest'
+        required: false
+        default: 'latest'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps: 
+      - run: |
+          echo "TAG=$TAG"
+        env:
+          TAG: ${{ inputs.tag }}
+
+
