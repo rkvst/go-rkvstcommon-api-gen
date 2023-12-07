@@ -5,7 +5,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.24.3
-// source: assets/v2/assets/service.proto
+// source: datatrails-common-api/assets/v2/assets/service.proto
 
 package assets
 
@@ -109,7 +109,7 @@ var Events_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "assets/v2/assets/service.proto",
+	Metadata: "datatrails-common-api/assets/v2/assets/service.proto",
 }
 
 const (
@@ -458,5 +458,5 @@ var Assets_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "assets/v2/assets/service.proto",
+	Metadata: "datatrails-common-api/assets/v2/assets/service.proto",
 }
