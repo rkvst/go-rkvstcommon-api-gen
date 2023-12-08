@@ -54,8 +54,10 @@ jobs:
           pushd repo
           cp -r ../go-datatrails-common-api-gen/* .
           if [[ -z "$(git status --short)" ]]; then
-            echo "::error :: no changes found"
-            exit 1
+            echo "::warning :: no changes found"
+            # we keep the go-datatrails-common-api and
+            # go-datatrails-common-api-gen tags in sync so we sometimes have empty releases
+            exit 0
           fi
 
       # We don't, as a matter of policy, lint generated code. Any deep tests on
@@ -76,8 +78,10 @@ jobs:
         working-directory: repo
         run: |
           if [[ -z "$(git status --short)" ]]; then
-            echo "::error :: no changes found"
-            exit 1
+            echo "::warning :: no changes found"
+            # we keep the go-datatrails-common-api and
+            # go-datatrails-common-api-gen tags in sync so we sometimes have empty releases
+            exit 0
           fi
           git config --global user.name 'CI Workflow'
           git config --global user.email $COMMIT_EMAIL
