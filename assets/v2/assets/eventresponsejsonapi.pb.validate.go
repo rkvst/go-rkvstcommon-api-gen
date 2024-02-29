@@ -145,50 +145,33 @@ func (m *EventResponseJSONAPI) validate(all bool) error {
 
 	// no validation rules for TenantIdentity
 
-	switch v := m.ProofDetails.(type) {
-	case *EventResponseJSONAPI_MerklelogEntry:
-		if v == nil {
-			err := EventResponseJSONAPIValidationError{
-				field:  "ProofDetails",
-				reason: "oneof value cannot be a typed-nil",
-			}
-			if !all {
-				return err
-			}
-			errors = append(errors, err)
-		}
-
-		if all {
-			switch v := interface{}(m.GetMerklelogEntry()).(type) {
-			case interface{ ValidateAll() error }:
-				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, EventResponseJSONAPIValidationError{
-						field:  "MerklelogEntry",
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			case interface{ Validate() error }:
-				if err := v.Validate(); err != nil {
-					errors = append(errors, EventResponseJSONAPIValidationError{
-						field:  "MerklelogEntry",
-						reason: "embedded message failed validation",
-						cause:  err,
-					})
-				}
-			}
-		} else if v, ok := interface{}(m.GetMerklelogEntry()).(interface{ Validate() error }); ok {
-			if err := v.Validate(); err != nil {
-				return EventResponseJSONAPIValidationError{
+	if all {
+		switch v := interface{}(m.GetMerklelogEntry()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, EventResponseJSONAPIValidationError{
 					field:  "MerklelogEntry",
 					reason: "embedded message failed validation",
 					cause:  err,
-				}
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, EventResponseJSONAPIValidationError{
+					field:  "MerklelogEntry",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
 			}
 		}
-
-	default:
-		_ = v // ensures v is used
+	} else if v, ok := interface{}(m.GetMerklelogEntry()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return EventResponseJSONAPIValidationError{
+				field:  "MerklelogEntry",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
 	}
 
 	if len(errors) > 0 {
