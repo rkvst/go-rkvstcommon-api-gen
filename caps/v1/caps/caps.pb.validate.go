@@ -178,6 +178,17 @@ func (m *Cap) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
+	if m.GetResourceCap() < -1 {
+		err := CapValidationError{
+			field:  "ResourceCap",
+			reason: "value must be greater than or equal to -1",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if len(errors) > 0 {
 		return CapMultiError(errors)
 	}
