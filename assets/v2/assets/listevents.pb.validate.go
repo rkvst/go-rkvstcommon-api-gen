@@ -471,6 +471,21 @@ func (m *ListEventsRequest) validate(all bool) error {
 
 	}
 
+	if m.MmrIndex != nil {
+
+		if m.GetMmrIndex() < 0 {
+			err := ListEventsRequestValidationError{
+				field:  "MmrIndex",
+				reason: "value must be greater than or equal to 0",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return ListEventsRequestMultiError(errors)
 	}
