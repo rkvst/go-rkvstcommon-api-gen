@@ -24,15 +24,12 @@ type ConfirmationStatus int32
 
 const (
 	ConfirmationStatus_CONFIRMATION_STATUS_UNSPECIFIED ConfirmationStatus = 0
-	ConfirmationStatus_PENDING                         ConfirmationStatus = 1 // not yet committed
-	ConfirmationStatus_CONFIRMED                       ConfirmationStatus = 2 // committed. forestrie: "You can easily prove it changed"
-	ConfirmationStatus_FAILED                          ConfirmationStatus = 3 // permanent failure
-	// Regarding the new statuses for forestrie,  See
-	// https://github.com/datatrails/epic-8120-scalable-proof-mechanisms/blob/main/event-trust-levels.md
-	ConfirmationStatus_STORED    ConfirmationStatus = 4 // forestrie, "its in the db"
-	ConfirmationStatus_COMMITTED ConfirmationStatus = 5 // forestrie, "you can know if its changed"
-	// We re-use the constant for CONFIRMED (above)
-	ConfirmationStatus_UNEQUIVOCAL ConfirmationStatus = 6 // forestrie, "You easily prove it was publicly available to all"
+	ConfirmationStatus_PENDING                         ConfirmationStatus = 1 // Not yet stored
+	ConfirmationStatus_CONFIRMED                       ConfirmationStatus = 2 // A tree root including the event has been signed by DataTrails
+	ConfirmationStatus_FAILED                          ConfirmationStatus = 3 // Permanent failure
+	ConfirmationStatus_STORED                          ConfirmationStatus = 4 // In database, awaiting verifiable commitment
+	ConfirmationStatus_COMMITTED                       ConfirmationStatus = 5 // The stored event is verifiable
+	ConfirmationStatus_UNEQUIVOCAL                     ConfirmationStatus = 6 // Provable independent of DataTrails
 )
 
 // Enum value maps for ConfirmationStatus.
