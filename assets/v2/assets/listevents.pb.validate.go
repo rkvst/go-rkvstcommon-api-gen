@@ -501,6 +501,21 @@ func (m *ListEventsRequest) validate(all bool) error {
 
 	}
 
+	if m.MinimumTrust != nil {
+
+		if _, ok := ConfirmationStatus_name[int32(m.GetMinimumTrust())]; !ok {
+			err := ListEventsRequestValidationError{
+				field:  "MinimumTrust",
+				reason: "value must be one of the defined enum values",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return ListEventsRequestMultiError(errors)
 	}
