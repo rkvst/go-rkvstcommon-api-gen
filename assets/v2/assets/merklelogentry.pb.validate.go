@@ -139,6 +139,258 @@ var _ interface {
 	ErrorName() string
 } = MerkleLogCommitValidationError{}
 
+// Validate checks the field values on MerkleLogActiveItem with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *MerkleLogActiveItem) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on MerkleLogActiveItem with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// MerkleLogActiveItemMultiError, or nil if none found.
+func (m *MerkleLogActiveItem) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *MerkleLogActiveItem) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for TenantIdentity
+
+	// no validation rules for Massif
+
+	// no validation rules for Seal
+
+	// no validation rules for MassifLastid
+
+	// no validation rules for SealLastid
+
+	if len(errors) > 0 {
+		return MerkleLogActiveItemMultiError(errors)
+	}
+
+	return nil
+}
+
+// MerkleLogActiveItemMultiError is an error wrapping multiple validation
+// errors returned by MerkleLogActiveItem.ValidateAll() if the designated
+// constraints aren't met.
+type MerkleLogActiveItemMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m MerkleLogActiveItemMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m MerkleLogActiveItemMultiError) AllErrors() []error { return m }
+
+// MerkleLogActiveItemValidationError is the validation error returned by
+// MerkleLogActiveItem.Validate if the designated constraints aren't met.
+type MerkleLogActiveItemValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e MerkleLogActiveItemValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e MerkleLogActiveItemValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e MerkleLogActiveItemValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e MerkleLogActiveItemValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e MerkleLogActiveItemValidationError) ErrorName() string {
+	return "MerkleLogActiveItemValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e MerkleLogActiveItemValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sMerkleLogActiveItem.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = MerkleLogActiveItemValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = MerkleLogActiveItemValidationError{}
+
+// Validate checks the field values on MerkleLogActiveSince with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *MerkleLogActiveSince) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on MerkleLogActiveSince with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// MerkleLogActiveSinceMultiError, or nil if none found.
+func (m *MerkleLogActiveSince) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *MerkleLogActiveSince) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for SinceIdtimestamp
+
+	// no validation rules for TimestampMs
+
+	for idx, item := range m.GetItems() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, MerkleLogActiveSinceValidationError{
+						field:  fmt.Sprintf("Items[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, MerkleLogActiveSinceValidationError{
+						field:  fmt.Sprintf("Items[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return MerkleLogActiveSinceValidationError{
+					field:  fmt.Sprintf("Items[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return MerkleLogActiveSinceMultiError(errors)
+	}
+
+	return nil
+}
+
+// MerkleLogActiveSinceMultiError is an error wrapping multiple validation
+// errors returned by MerkleLogActiveSince.ValidateAll() if the designated
+// constraints aren't met.
+type MerkleLogActiveSinceMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m MerkleLogActiveSinceMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m MerkleLogActiveSinceMultiError) AllErrors() []error { return m }
+
+// MerkleLogActiveSinceValidationError is the validation error returned by
+// MerkleLogActiveSince.Validate if the designated constraints aren't met.
+type MerkleLogActiveSinceValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e MerkleLogActiveSinceValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e MerkleLogActiveSinceValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e MerkleLogActiveSinceValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e MerkleLogActiveSinceValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e MerkleLogActiveSinceValidationError) ErrorName() string {
+	return "MerkleLogActiveSinceValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e MerkleLogActiveSinceValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sMerkleLogActiveSince.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = MerkleLogActiveSinceValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = MerkleLogActiveSinceValidationError{}
+
 // Validate checks the field values on MerkleLogConfirm with the rules defined
 // in the proto definition for this message. If any rules are violated, the
 // first error encountered is returned, or nil if there are no violations.
