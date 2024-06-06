@@ -516,6 +516,10 @@ func (m *ListEventsRequest) validate(all bool) error {
 
 	}
 
+	if m.TransactionId != nil {
+		// no validation rules for TransactionId
+	}
+
 	if len(errors) > 0 {
 		return ListEventsRequestMultiError(errors)
 	}
