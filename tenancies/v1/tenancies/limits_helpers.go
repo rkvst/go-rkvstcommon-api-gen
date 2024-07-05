@@ -5,7 +5,6 @@ const (
 	AccessPoliciesLimitsLabel     = "AccessPolicies"
 	AppRegistrationsLimitsLabel   = "AppRegistrations"
 	AssetsKhipuLimitsLabel        = "AssetsKhipu"
-	AssetsSimpleHashLimitsLabel   = "AssetsSimpleHash"
 	AssetsPublicLimitsLabel       = "AssetsPublic"
 	BlobsLimitsLabel              = "Blobs"
 	BlobsSizeLimitsLabel          = "BlobsSize"
@@ -14,7 +13,6 @@ const (
 	InvitesLimitsLabel            = "Invites"
 	LocationsLimitsLabel          = "Locations"
 	TenantUsersLimitsLabel        = "TenantUsers"
-	TLSCACertificatesLimitsLabel  = "TLSCACertificates"
 )
 
 var (
@@ -24,7 +22,6 @@ var (
 		AppRegistrationsLimitsLabel,
 		AssetsKhipuLimitsLabel,
 		AssetsPublicLimitsLabel,
-		AssetsSimpleHashLimitsLabel,
 		BlobsLimitsLabel,
 		BlobsSizeLimitsLabel,
 		CompliancePoliciesLimitsLabel,
@@ -32,7 +29,6 @@ var (
 		InvitesLimitsLabel,
 		LocationsLimitsLabel,
 		TenantUsersLimitsLabel,
-		TLSCACertificatesLimitsLabel,
 	}
 )
 
