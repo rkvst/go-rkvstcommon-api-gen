@@ -104,7 +104,7 @@ func local_request_PublicAssets_GetPublicEvent_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_PublicAssets_GetPublicAsset_0 = &utilities.DoubleArray{Encoding: map[string]int{"uuid": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_PublicAssets_GetPublicAsset_0 = &utilities.DoubleArray{Encoding: map[string]int{"uuid": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_PublicAssets_GetPublicAsset_0(ctx context.Context, marshaler runtime.Marshaler, client PublicAssetsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -174,7 +174,7 @@ func local_request_PublicAssets_GetPublicAsset_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_PublicAssets_ListPublicEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"uuid": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
+	filter_PublicAssets_ListPublicEvents_0 = &utilities.DoubleArray{Encoding: map[string]int{"uuid": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_PublicAssets_ListPublicEvents_0(ctx context.Context, marshaler runtime.Marshaler, client PublicAssetsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -330,21 +330,21 @@ func RegisterPublicAssetsHandlerServer(ctx context.Context, mux *runtime.ServeMu
 // RegisterPublicAssetsHandlerFromEndpoint is same as RegisterPublicAssetsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterPublicAssetsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
