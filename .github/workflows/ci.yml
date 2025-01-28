@@ -83,7 +83,9 @@ jobs:
             # go-datatrails-common-api-gen tags in sync so we sometimes have empty releases
             exit 0
           fi
-          git config --global user.name 'CI Workflow'
+          git config --global url.'https://${{ secrets.GO_COMMON_API_GEN_TOKEN}}@github.com/datatrails'.insteadOf https://github.com/datatrails
+          go env -w GOPRIVATE="github.com/datatrails/*"
+          git config --global user.name 'landintrees'
           git config --global user.email $COMMIT_EMAIL
           git add .
           git commit -am "feat: updated to go-datatrails-common-api@$TAG"
