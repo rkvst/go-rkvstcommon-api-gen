@@ -33,6 +33,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: repo
+          token: ${{ secrets.GO_COMMON_API_GEN_TOKEN}}
 
       - name: Update the sources
         run: |
