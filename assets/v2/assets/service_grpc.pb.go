@@ -23,96 +23,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Events_Create_FullMethodName = "/archivist.v2.Events/Create"
-)
-
-// EventsClient is the client API for Events service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EventsClient interface {
-	Create(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*EventResponse, error)
-}
-
-type eventsClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewEventsClient(cc grpc.ClientConnInterface) EventsClient {
-	return &eventsClient{cc}
-}
-
-func (c *eventsClient) Create(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*EventResponse, error) {
-	out := new(EventResponse)
-	err := c.cc.Invoke(ctx, Events_Create_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// EventsServer is the server API for Events service.
-// All implementations must embed UnimplementedEventsServer
-// for forward compatibility
-type EventsServer interface {
-	Create(context.Context, *CreateEventRequest) (*EventResponse, error)
-	mustEmbedUnimplementedEventsServer()
-}
-
-// UnimplementedEventsServer must be embedded to have forward compatible implementations.
-type UnimplementedEventsServer struct {
-}
-
-func (UnimplementedEventsServer) Create(context.Context, *CreateEventRequest) (*EventResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedEventsServer) mustEmbedUnimplementedEventsServer() {}
-
-// UnsafeEventsServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EventsServer will
-// result in compilation errors.
-type UnsafeEventsServer interface {
-	mustEmbedUnimplementedEventsServer()
-}
-
-func RegisterEventsServer(s grpc.ServiceRegistrar, srv EventsServer) {
-	s.RegisterService(&Events_ServiceDesc, srv)
-}
-
-func _Events_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateEventRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EventsServer).Create(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Events_Create_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EventsServer).Create(ctx, req.(*CreateEventRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// Events_ServiceDesc is the grpc.ServiceDesc for Events service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var Events_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "archivist.v2.Events",
-	HandlerType: (*EventsServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Create",
-			Handler:    _Events_Create_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "datatrails-common-api/assets/v2/assets/service.proto",
-}
-
-const (
 	Assets_ListAssets_FullMethodName        = "/archivist.v2.Assets/ListAssets"
 	Assets_CreateAsset_FullMethodName       = "/archivist.v2.Assets/CreateAsset"
 	Assets_GetAsset_FullMethodName          = "/archivist.v2.Assets/GetAsset"
@@ -455,6 +365,96 @@ var Assets_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCaps",
 			Handler:    _Assets_GetCaps_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "datatrails-common-api/assets/v2/assets/service.proto",
+}
+
+const (
+	Events_Create_FullMethodName = "/archivist.v2.Events/Create"
+)
+
+// EventsClient is the client API for Events service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type EventsClient interface {
+	Create(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*EventResponse, error)
+}
+
+type eventsClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEventsClient(cc grpc.ClientConnInterface) EventsClient {
+	return &eventsClient{cc}
+}
+
+func (c *eventsClient) Create(ctx context.Context, in *CreateEventRequest, opts ...grpc.CallOption) (*EventResponse, error) {
+	out := new(EventResponse)
+	err := c.cc.Invoke(ctx, Events_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EventsServer is the server API for Events service.
+// All implementations must embed UnimplementedEventsServer
+// for forward compatibility
+type EventsServer interface {
+	Create(context.Context, *CreateEventRequest) (*EventResponse, error)
+	mustEmbedUnimplementedEventsServer()
+}
+
+// UnimplementedEventsServer must be embedded to have forward compatible implementations.
+type UnimplementedEventsServer struct {
+}
+
+func (UnimplementedEventsServer) Create(context.Context, *CreateEventRequest) (*EventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedEventsServer) mustEmbedUnimplementedEventsServer() {}
+
+// UnsafeEventsServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EventsServer will
+// result in compilation errors.
+type UnsafeEventsServer interface {
+	mustEmbedUnimplementedEventsServer()
+}
+
+func RegisterEventsServer(s grpc.ServiceRegistrar, srv EventsServer) {
+	s.RegisterService(&Events_ServiceDesc, srv)
+}
+
+func _Events_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EventsServer).Create(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Events_Create_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EventsServer).Create(ctx, req.(*CreateEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Events_ServiceDesc is the grpc.ServiceDesc for Events service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Events_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "archivist.v2.Events",
+	HandlerType: (*EventsServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Create",
+			Handler:    _Events_Create_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
